@@ -3,8 +3,13 @@
 // gcc cmain.c -o cwindow -lglut -lGLUT -lGL
 // Fazer rodar no mac
 
-
-#include <GL/glut.h>
+#ifdef __APPLE__
+    #define GL_SILENCE_DEPRECATION // mac
+    #include <GLUT/glut.h>         // mac
+#endif
+#ifdef __linux__
+    #include <GL/glut.h>         // mac
+#endif
  
 void displayMe(void)
 {
