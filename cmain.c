@@ -1,14 +1,17 @@
 
-// works create script for it
-// gcc cmain.c -o cwindow -lglut -lGLUT -lGL
-// Fazer rodar no mac
+/*
+ works create script for it
+ gcc cmain.c -o cwindow -lglut -lGLUT -lGL //nao funciona mais
+ possivelmente estou usando freeglut
+ gcc cmain.c -o cwindow -lglut -lGL // funciona  
+ Fazer rodar no mac  */
 
 #ifdef __APPLE__
-    #define GL_SILENCE_DEPRECATION // mac
-    #include <GLUT/glut.h>         // mac
+    #define GL_SILENCE_DEPRECATION 
+    #include <GLUT/glut.h>         
 #endif
 #ifdef __linux__
-    #include <GL/glut.h>         // mac
+    #include <GL/glut.h>         
 #endif
  
 void displayMe(void)
@@ -27,7 +30,7 @@ int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE);
-    glutInitWindowSize(400, 300);
+    glutInitWindowSize(800, 600);
     glutInitWindowPosition(100, 100);
     glutCreateWindow("Hello world!");
     glutDisplayFunc(displayMe);
