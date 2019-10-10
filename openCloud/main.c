@@ -8,8 +8,33 @@
     #include <GL/glut.h>         
 #endif
 
-void draw() 
+#include <stdio.h>
+#include <string.h>
+
+void viewer_open_cloud()
 {
+        
+}
+
+unsigned char helper_open_cloud_file()
+{
+        FILE *ptr;
+        ptr = fopen("/home/latin/Desktop/JoaoPedro/draw_from_xyz_openGL/image1.xyz", "r");
+
+        // meus prints so saem depois que eu fecho a aplicação
+        // pelo botao de sair da janela criada, kill terminal não tem o mesmo efeito
+        if (ptr == NULL) {
+                printf("error\n");
+        } else {
+                printf("OK!");
+        }
+
+}
+
+
+void viewer_draw() 
+{
+        helper_open_cloud_file();
         glBegin(GL_POLYGON);
                 glVertex3f(0.5, 0.0, 0.5);
                 glVertex3f(0.7, 0.0, 0.0);
@@ -18,10 +43,11 @@ void draw()
         glEnd();
 }
 
-void displayMe(void)
+void jp_displayMe(void)
 {
+        helper_open_cloud_file();
         glClear(GL_COLOR_BUFFER_BIT);
-        draw();
+        viewer_draw();
         glFlush();
 }
  
@@ -32,7 +58,8 @@ int main(int argc, char** argv)
         glutInitWindowSize(800, 600);
         glutInitWindowPosition(100, 100);
         glutCreateWindow("Open Cloud");
-        glutDisplayFunc(displayMe);
+
+        glutDisplayFunc(jp_displayMe);
         glutMainLoop();
         return 0;
 }
