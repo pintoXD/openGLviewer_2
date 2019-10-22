@@ -35,11 +35,15 @@ unsigned char helper_open_cloud_file()
 void viewer_draw() 
 {
         helper_open_cloud_file();
-        glBegin(GL_POLYGON);
+        glBegin(GL_POINTS);
                 glVertex3f(0.5, 0.0, 0.5);
                 glVertex3f(0.7, 0.0, 0.0);
                 glVertex3f(0.0, 0.5, 0.0);
+                glPointSize(2.0);
                 glVertex3f(0.0, 0.0, 0.5);
+                glVertex3f(0.0, 0.0, 7);
+                
+
         glEnd();
 }
 
