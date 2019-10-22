@@ -13,7 +13,8 @@
 	"settings": {
 		"files.associations": {
 			"string": "cpp",
-			"glut.h": "c"
+			"glut.h": "c",
+			"stdio.h": "c"
 		}
 	}
 }
