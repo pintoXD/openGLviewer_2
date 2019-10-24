@@ -49,6 +49,7 @@ void displayMe_WITH_POITER(FILE * cloudFile)
     glFlush();
 }
 
+<<<<<<< HEAD
 void displayMe() 
 {
         glClear(GL_COLOR_BUFFER_BIT);
@@ -65,6 +66,8 @@ void displayMe()
 
 
 
+=======
+>>>>>>> master
 
 int open_cloud_file()
 {
@@ -88,6 +91,33 @@ void read_cloud_line()
 }
 
 
+<<<<<<< HEAD
+=======
+void displayMe2(void) 
+{   
+        double x, y, z;
+        x = y = z = 0;
+
+        FILE *cloudFile;
+        cloudFile = fopen ("./cloud_f.xyz","r");
+
+        if (cloudFile == NULL) {
+                printf ("File not created okay, errno = %d\n", errno);
+                //return 1;
+        }
+
+        glClear(GL_COLOR_BUFFER_BIT);
+        glBegin(GL_POINTS);
+                for(int i = 1, cursor = 0; cursor != EOF; i++) {       
+                        cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
+                        glVertex3f(0.25*x, -0.25*y, 0.25*z);
+                 }
+        glEnd();
+        glFlush();
+}
+
+
+>>>>>>> master
 void defualtBody(int argc, char** argv)
 {
         glutInit(&argc, argv);
@@ -95,11 +125,15 @@ void defualtBody(int argc, char** argv)
         glutInitWindowSize(800, 600);
         glutInitWindowPosition(100, 100);
         glutCreateWindow("Hello world!");
+<<<<<<< HEAD
 
         glutDisplayFunc(displayMe() );
+=======
+        glutDisplayFunc(displayMe2);
+>>>>>>> master
         glutMainLoop();
 
-/* 
+ /* 
         glutInit(&argc, argv);
         glutInitDisplayMode(GLUT_SINGLE);
         glutInitWindowSize(800, 600);
@@ -112,9 +146,9 @@ void defualtBody(int argc, char** argv)
 }
 
 
-
 int main(int argc, char** argv)
 {
+<<<<<<< HEAD
         FILE *cloudFile;
         cloudFile = fopen ("./cloud_f.xyz","r");
 
@@ -138,6 +172,10 @@ int main(int argc, char** argv)
         fclose (cloudFile);
         printf ("File opened okay\n");
         return 0;
+=======
+        printf("hello openGL\n");
+        defualtBody(argc, argv);
+>>>>>>> master
         
         return 0;
 }
