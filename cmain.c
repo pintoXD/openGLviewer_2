@@ -59,14 +59,14 @@ void defualtBody(int argc, char** argv)
         glutDisplayFunc(displayMe);
         glutMainLoop();
 
-        /* 
+/* 
         glutInit(&argc, argv);
         glutInitDisplayMode(GLUT_SINGLE);
         glutInitWindowSize(800, 600);
         glutInitWindowPosition(100, 100);
         glutCreateWindow("Hello world!");
         glutDisplayFunc(displayMe);
-        glutMainLoop(); 
+        glutMainLoop(); }
         */
         
 }
@@ -76,15 +76,29 @@ void defualtBody(int argc, char** argv)
 int main(int argc, char** argv)
 {
         //defualtBody(argc, argv);
-        
+        double x, y, z;
+        x = y = z = 0;
 
         FILE *cloudFile;
-        cloudFile = fopen ("./1cloud.xyz","r");
+        cloudFile = fopen ("./cloud_f.xyz","r");
 
         if (cloudFile == NULL) {
                 printf ("File not created okay, errno = %d\n", errno);
                 return 1;
         }
+//      
+        //for(int i = 1; i <= 300000; i++)
+        int i = 1;
+        int cursor = 0; 
+        while( cursor != EOF )
+        {       
+                cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
+                printf("%d - %lf %lf %lf \n",i , x, y, z);
+                i++;
+        }
+                
+
+//
         fclose (cloudFile);
         printf ("File opened okay\n");
         return 0;
