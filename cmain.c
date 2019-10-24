@@ -66,16 +66,9 @@ void displayMe2(void)
 
         glClear(GL_COLOR_BUFFER_BIT);
         glBegin(GL_POINTS);
-
-                //while( cursor != EOF ) //
-                for(int i = 1, cursor = 0; cursor != EOF; i++) 
-                {       
+                for(int i = 1, cursor = 0; cursor != EOF; i++) {       
                         cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
-                        glVertex3f(x, -y, z);
-                        
-                        
-                        // printf("%d - %lf %lf %lf \n",i , x, y, z);
-                        // i++;
+                        glVertex3f(0.25*x, -0.25*y, 0.25*z);
                  }
         glEnd();
         glFlush();
@@ -105,40 +98,10 @@ void defualtBody(int argc, char** argv)
 }
 
 
-
-
 int main(int argc, char** argv)
 {
-        printf("hello openGL");
+        printf("hello openGL\n");
         defualtBody(argc, argv);
-
-        
-        // double x, y, z;
-        // x = y = z = 0;
-
-        // FILE *cloudFile;
-        // cloudFile = fopen ("./cloud_f.xyz","r");
-
-        // if (cloudFile == NULL) {
-        //         printf ("File not created okay, errno = %d\n", errno);
-        //         return 1;
-        // }
-//      
-        
-        // int i = 1;
-        // int cursor = 0; 
-        // while( cursor != EOF ) //for(int i = 1; i <= 300000; i++)
-        // {       
-        //         cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
-        //         printf("%d - %lf %lf %lf \n",i , x, y, z);
-        //         i++;
-        // }
-                
-
-//
-        // fclose (cloudFile);
-        // printf ("File opened okay\n");
-        // return 0;
         
         return 0;
 }
