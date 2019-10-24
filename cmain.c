@@ -16,11 +16,24 @@
 
 #include <stdio.h>
 #include <errno.h>
- 
-void displayMe(void)
+
+void draw_cloud(FILE * cloudFile)
+{       
+        double x, y, z;
+        x = y = z = 0;
+
+        glBegin(GL_POINTS);
+                for (int i = 1, cursor = 0; cursor != EOF; i++) {       
+                        cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
+                        glVertex3f(x*30, y*-30, z*30);
+                }
+        glEnd();
+}
+
+void displayMe_WITH_POITER(FILE * cloudFile)
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    glBegin(GL_POLYGON);
+/*    glBegin(GL_POLYGON);
        
         glVertex3f(0.5, 0.0, 0.5);
         glVertex3f(0.5, 0.0, 0.0);
@@ -28,15 +41,45 @@ void displayMe(void)
         glVertex3f(0.0, 0.0, 0.5);
     glEnd();
     //glPointSize(10.0);  // doesn't work as I expected
+*/
+    // draw_cloud(cloudFile);
     glBegin(GL_POINTS);
         glVertex3f(0.5, 0.0, 0.5);
     glEnd();
     glFlush();
 }
 
+void displayMe() 
+{
+        glClear(GL_COLOR_BUFFER_BIT);
+        glBegin(GL_POLYGON);
+        
+                glVertex3f(0.5, 0.0, 0.5);
+                glVertex3f(0.5, 0.0, 0.0);
+                glVertex3f(0.0, 0.5, 0.0);
+                glVertex3f(0.0, 0.0, 0.5);
+        glEnd();
+        glFlush();
+}
+
+
+
+
+
 int open_cloud_file()
 {
     //open the cloud file
+}
+
+int open_cloud_n_print(FILE *  cloudFile)
+{
+        double x, y, z;
+        x = y = z = 0;
+
+        for (int i = 1, cursor = 0; cursor != EOF; i++) {       
+                cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
+                printf("%d - %lf %lf %lf \n",i , x, y, z);
+        } 
 }
 
 void read_cloud_line()
@@ -44,10 +87,6 @@ void read_cloud_line()
     // operatins read each cloud line
 }
 
-void draw_cloud()
-{
-    // use openGl vertex to draw 
-}
 
 void defualtBody(int argc, char** argv)
 {
@@ -56,7 +95,8 @@ void defualtBody(int argc, char** argv)
         glutInitWindowSize(800, 600);
         glutInitWindowPosition(100, 100);
         glutCreateWindow("Hello world!");
-        glutDisplayFunc(displayMe);
+
+        glutDisplayFunc(displayMe() );
         glutMainLoop();
 
 /* 
@@ -75,10 +115,6 @@ void defualtBody(int argc, char** argv)
 
 int main(int argc, char** argv)
 {
-        //defualtBody(argc, argv);
-        double x, y, z;
-        x = y = z = 0;
-
         FILE *cloudFile;
         cloudFile = fopen ("./cloud_f.xyz","r");
 
@@ -86,19 +122,19 @@ int main(int argc, char** argv)
                 printf ("File not created okay, errno = %d\n", errno);
                 return 1;
         }
-//      
-        //for(int i = 1; i <= 300000; i++)
-        int i = 1;
-        int cursor = 0; 
-        while( cursor != EOF )
-        {       
+        //open_cloud_n_print(cloudFile);
+        
+        defualtBody(argc, argv);
+    
+
+       
+
+/*
+        for(int i = 1, cursor = 0; cursor != EOF; i++)
+               
                 cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
                 printf("%d - %lf %lf %lf \n",i , x, y, z);
-                i++;
-        }
-                
-
-//
+*/      
         fclose (cloudFile);
         printf ("File opened okay\n");
         return 0;
