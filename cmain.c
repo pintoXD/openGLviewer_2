@@ -33,7 +33,7 @@ void draw_cloud(FILE * cloudFile)
 void displayMe_WITH_POITER(FILE * cloudFile)
 {
     glClear(GL_COLOR_BUFFER_BIT);
-/*    glBegin(GL_POLYGON);
+    glBegin(GL_POLYGON);
        
         glVertex3f(0.5, 0.0, 0.5);
         glVertex3f(0.5, 0.0, 0.0);
@@ -41,11 +41,9 @@ void displayMe_WITH_POITER(FILE * cloudFile)
         glVertex3f(0.0, 0.0, 0.5);
     glEnd();
     //glPointSize(10.0);  // doesn't work as I expected
-*/
+
     // draw_cloud(cloudFile);
-    glBegin(GL_POINTS);
-        glVertex3f(0.5, 0.0, 0.5);
-    glEnd();
+    
     glFlush();
 }
 
@@ -72,7 +70,8 @@ void read_cloud_line()
 }
 
 
-void displayMe2(void) 
+void displayMe2(void) // nao adianta fazer alterações na assinatura dessa funçaõ 
+// callback e funções de desenhar
 {   
         double x, y, z;
         x = y = z = 0;
@@ -90,7 +89,8 @@ void displayMe2(void)
                 for(int i = 1, cursor = 0; cursor != EOF; i++) {       
                         cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
                         glVertex3f(0.25*x, -0.25*y, 0.25*z);
-                 }
+                        //glVertex3f(x, -factor*y, factor*z);
+                }
         glEnd();
         glFlush();
 }
@@ -107,13 +107,7 @@ void defualtBody(int argc, char** argv)
         glutMainLoop();
 
  /* 
-        glutInit(&argc, argv);
-        glutInitDisplayMode(GLUT_SINGLE);
-        glutInitWindowSize(800, 600);
-        glutInitWindowPosition(100, 100);
-        glutCreateWindow("Hello world!");
-        glutDisplayFunc(displayMe);
-        glutMainLoop(); }
+       
         */
         
 }
