@@ -95,17 +95,11 @@ void displayMe2(void) // nao adianta fazer alterações na assinatura dessa fun�
         glFlush();
 }
 
-static GLint vertices[] = { 25, 25,
-                            100, 325,
-                            175, 25,
-                            175, 325,
-                            250, 25,
-                            325, 325 };
 
-static GLint vertices2[] = { 0, 0,
+static GLfloat vertices2[] = { 0, 0,
                             0.5, 0,
                             0.5, 0.5,
-                            1.75, 3.25,
+                            0, 0.8,
                             2.0, 2.5,
                             3.5, 3.5 };
 
@@ -118,7 +112,8 @@ void display_vertex_array(void)
    
         glColor3f(1, 1, 1);
         glEnableClientState(GL_VERTEX_ARRAY);
-        glVertexPointer(2, GL_INT, 0, vertices);
+       
+        glVertexPointer(2, GL_FLOAT, 0, vertices2);
         
 /*        
         glBegin(GL_POLYGON);
@@ -134,15 +129,15 @@ void display_vertex_array(void)
 */
 
         glClear(GL_COLOR_BUFFER_BIT);
-        glBegin(GL_TRIANGLES);
-                // glVertex2f(0.0, 0.0);
-                // glVertex2f(0.5, 0.0);
-                // glVertex2f(0.5, 0.5);
-                glArrayElement(vertices[1]);
+        glBegin(GL_POINTS);
+                glArrayElement(0);
+                glArrayElement(1);
+                glArrayElement(2);
                 glArrayElement(3);
-                glArrayElement(5);
 
         glEnd();
+
+        glDisableClientState(GL_VERTEX_ARRAY);
         glFlush();
 } 
 
