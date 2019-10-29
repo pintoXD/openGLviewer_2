@@ -95,6 +95,56 @@ void displayMe2(void) // nao adianta fazer alterações na assinatura dessa fun�
         glFlush();
 }
 
+static GLint vertices[] = { 25, 25,
+                            100, 325,
+                            175, 25,
+                            175, 325,
+                            250, 25,
+                            325, 325 };
+
+static GLint vertices2[] = { 0, 0,
+                            0.5, 0,
+                            0.5, 0.5,
+                            1.75, 3.25,
+                            2.0, 2.5,
+                            3.5, 3.5 };
+
+void display_vertex_array(void) 
+{
+        glClearColor(0, 0, 0, 1);
+        glClear(GL_COLOR_BUFFER_BIT);
+        
+
+   
+        glColor3f(1, 1, 1);
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glVertexPointer(2, GL_INT, 0, vertices);
+        
+/*        
+        glBegin(GL_POLYGON);
+                // glArrayElement(0);
+                // glArrayElement(1);
+                // glArrayElement(2);
+
+                glVertex3f(0.0, 0.0, 0.0);
+                glVertex3f(0.5, 0.0, 0.0);
+                glVertex3f(0.0, 0.5, 0.0);
+        glEnd();
+        glFlush();
+*/
+
+        glClear(GL_COLOR_BUFFER_BIT);
+        glBegin(GL_TRIANGLES);
+                // glVertex2f(0.0, 0.0);
+                // glVertex2f(0.5, 0.0);
+                // glVertex2f(0.5, 0.5);
+                glArrayElement(vertices[1]);
+                glArrayElement(3);
+                glArrayElement(5);
+
+        glEnd();
+        glFlush();
+} 
 
 void defualtBody(int argc, char** argv)
 {
@@ -103,7 +153,9 @@ void defualtBody(int argc, char** argv)
         glutInitWindowSize(800, 600);
         glutInitWindowPosition(100, 100);
         glutCreateWindow("Hello world!");
-        glutDisplayFunc(displayMe2);
+
+
+        glutDisplayFunc(display_vertex_array);
         glutMainLoop();
 
  /* 
@@ -115,7 +167,9 @@ void defualtBody(int argc, char** argv)
 
 int main(int argc, char** argv)
 {
-        printf("hello openGL\n");
+        
+
+        //printf("hello openGL\n");
         defualtBody(argc, argv);
         
         return 0;
