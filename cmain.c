@@ -95,40 +95,69 @@ void displayMe2(void) // nao adianta fazer alterações na assinatura dessa fun�
         glFlush();
 }
 
+static GLfloat vertices[30];
 
-static GLfloat vertices2[] = { 0, 0,
-                            0.5, 0,
-                            0.5, 0.5,
-                            0, 0.8,
-                            2.0, 2.5,
-                            3.5, 3.5 };
+static GLfloat vertices2[] = { 0,   0, 1,
+                             0.5,   0, 1,
+                             0.5, 0.5, 1,
+                               0, 0.8, 1,
+                             2.0, 2.5, 1,
+                             3.5, 3.5, 1};
+
+void populate_array() 
+{      
+        FILE *cloudFile;
+        cloudFile = fopen ("./cloud_f.xyz","r");
+
+        if (cloudFile == NULL) {
+                printf ("File not created okay, errno = %d\n", errno);
+                //return 1;
+        }
+        
+        int linesCount = 0;
+        for (char c = getc(cloudFile); c != EOF; c = getc(cloudFile)) {
+                if (c == '\n')
+                        linesCount = linesCount + 1;
+        }
+
+        // ver se precida de rewind
+        rewind(cloudFile);
+
+        //declarar array no tamanho certo
+        float *vertices_ptr = (float *)malloc(sizeof(float)*linesCount*3 + 1);
+
+        //
+
+        //povoar array
+        int linesCount2 = 0;
+        for (char d = getc(cloudFile); d != EOF; d = getc(cloudFile)) {
+                if (d == '\n')
+                        linesCount2 = linesCount2 + 1;
+        }
+
+
+        for (int i = 1; i <= 30; i++) {
+                vertices[i-1] = i;
+        }
+
+         for (int i = 1; i <= 30; i++) {
+                printf("%lf ", vertices[i-1]);
+        }
+        printf("\n lines count: %i  .-.  %i ", linesCount, linesCount2);
+
+
+}
 
 void display_vertex_array(void) 
 {
         glClearColor(0, 0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
-        
-
    
         glColor3f(1, 1, 1);
         glEnableClientState(GL_VERTEX_ARRAY);
        
-        glVertexPointer(2, GL_FLOAT, 0, vertices2);
+        glVertexPointer(3, GL_FLOAT, 0, vertices2);
         
-/*        
-        glBegin(GL_POLYGON);
-                // glArrayElement(0);
-                // glArrayElement(1);
-                // glArrayElement(2);
-
-                glVertex3f(0.0, 0.0, 0.0);
-                glVertex3f(0.5, 0.0, 0.0);
-                glVertex3f(0.0, 0.5, 0.0);
-        glEnd();
-        glFlush();
-*/
-
-        glClear(GL_COLOR_BUFFER_BIT);
         glBegin(GL_POINTS);
                 glArrayElement(0);
                 glArrayElement(1);
@@ -165,7 +194,8 @@ int main(int argc, char** argv)
         
 
         //printf("hello openGL\n");
-        defualtBody(argc, argv);
+        //defualtBody(argc, argv);
+        populate_array();
         
         return 0;
 }
