@@ -120,30 +120,48 @@ void populate_array()
                         linesCount = linesCount + 1;
         }
 
-        // ver se precida de rewind
         rewind(cloudFile);
+/*
+        //nao vou usar o mais 1 pq eu ja vou usar o array o tamanho certo 
+        // devo encontrar outa estrutura para armazenar o numero de linhas
 
-        //declarar array no tamanho certo
-        float *vertices_ptr = (float *)malloc(sizeof(float)*linesCount*3 + 1);
+        //((float *)vertices_ptr)[0] = linesCount;
+*/
+        void *vertices_ptr = malloc(sizeof(float)*linesCount*3);
 
-        //
+        
 
-        //povoar array
-        int linesCount2 = 0;
-        for (char d = getc(cloudFile); d != EOF; d = getc(cloudFile)) {
-                if (d == '\n')
-                        linesCount2 = linesCount2 + 1;
+        
+/* //povoar array
+        pega todos os caracteres na linha ponto final, hifen etc
+
+
+*/
+        // linesCount
+        float x, y, z;
+        // x = y = z = 0;
+        for (int linha = 1; linha <= 2; linha++) {  
+
+                fscanf(cloudFile, "%f %f %f \n", &x, &y, &z);
+                
+                
+                                                //     ((float *)vertices_ptr)[3*(linha-1)    ], 
+                                                //     ((float *)vertices_ptr)[3*(linha-1) + 1], 
+                                                //     ((float *)vertices_ptr)[3*(linha-1) + 2]);
+                
+                printf("%d - %f %f %f \n", linha, x, y, z );
+                
+                
+                                                //      ((float *)vertices_ptr)[3*(linha-1)    ], 
+                                                //      ((float *)vertices_ptr)[3*(linha-1) + 1], 
+                                                //      ((float *)vertices_ptr)[3*(linha-1) + 2]);
+              
         }
+        printf("\n\n");
 
-
-        for (int i = 1; i <= 30; i++) {
-                vertices[i-1] = i;
-        }
-
-         for (int i = 1; i <= 30; i++) {
-                printf("%lf ", vertices[i-1]);
-        }
-        printf("\n lines count: %i  .-.  %i ", linesCount, linesCount2);
+      
+        // for(int i = 0; i <= 3; i++)
+        //         printf("\n lines count: %i  ==  %f ", linesCount, ((float *)vertices_ptr)[3*16082*i]);
 
 
 }
@@ -195,7 +213,12 @@ int main(int argc, char** argv)
 
         //printf("hello openGL\n");
         //defualtBody(argc, argv);
-        populate_array();
-        
+        //populate_array();
+
+        FILE *cloudFile;
+        cloudFile = fopen ("./cloud_f.xyz","r");
+
+        open_cloud_n_print(cloudFile);
+
         return 0;
 }
