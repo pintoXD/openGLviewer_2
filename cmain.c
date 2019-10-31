@@ -130,7 +130,7 @@ void populate_array()
         //((float *)vertices_ptr)[0] = linesCount;
         +3 por causa do modo de abrir fscanf
 */
-        void *vertices_ptr = malloc(sizeof(float)*linesCount*3+3);
+        void *vertices_ptr = malloc(sizeof(double)*linesCount*3+3);
         
 /* //povoar array
         pega todos os caracteres na linha ponto final, hifen etc
@@ -141,9 +141,17 @@ void populate_array()
         double x, y, z;
         x = y = z = 0;
 
+        // estava olhando nuvem errada
+
         for (int i = 1, cursor = 0; cursor != EOF; i++) {       
-                cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
-                printf("%d - %lf %lf %lf \n",i , x, y, z);
+                //cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
+                cursor = fscanf(cloudFile, "%lf %lf %lf \n",  &((double *)vertices_ptr)[3*(i-1)    ], 
+                                                              &((double *)vertices_ptr)[3*(i-1) + 1], 
+                                                              &((double *)vertices_ptr)[3*(i-1) + 2]);
+                
+                printf("%d - %lf %lf %lf \n",i ,  ((double *)vertices_ptr)[3*(i-1)    ], 
+                                                  ((double *)vertices_ptr)[3*(i-1) + 1], 
+                                                  ((double *)vertices_ptr)[3*(i-1) + 2]);
         } 
         // for (int linha = 1; linha <= 2; linha++) {  
 
@@ -218,13 +226,13 @@ int main(int argc, char** argv)
 
         //printf("hello openGL\n");
         //defualtBody(argc, argv);
-        populate_array();
+   //     populate_array();
 
-/*
+//
         FILE *cloudFile;
         cloudFile = fopen ("./cloud_f.xyz","r");
 
         open_cloud_n_print(cloudFile);
-*/
+//*/
         return 0;
 }
