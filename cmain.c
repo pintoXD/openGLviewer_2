@@ -89,7 +89,7 @@ void displayMe2(void)
         glBegin(GL_POINTS);
                 for(int i = 1, cursor = 0; cursor != EOF; i++) {       
                         cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
-                        glVertex3f(0.25*x, -0.25*y, 0.25*z);
+                        glVertex3f(x, -y, z);
                         //glVertex3f(x, -factor*y, factor*z);
                 }
         glEnd();
@@ -114,20 +114,20 @@ void print_3d_array(void *ptrToArray, int begin, int end)
         }
 }
 
-static void *vertex_ptr;
+static GLdouble *vertex_ptr;
 
 static int vertex_count;
 
 
 void populate_array() 
 {
-/*
+        /*
         1 - abrir nuvem
         2 - contar numero de linhas
         3 - usar o numero de linhas para alocar dinaçicamente meu vetor
         4 - popular o vetor
         sera nescessario o numero de linhas do arquivo ?
-*/      
+        */      
         FILE *cloudFile;
         cloudFile = fopen ("./cloud_f.xyz","r");
 
@@ -144,7 +144,7 @@ void populate_array()
         vertex_count = linesCount;
 
         rewind(cloudFile);
-/*
+        /*
         //nao vou usar o mais 1 pq eu ja vou usar o array o tamanho certo 
         // devo encontrar outa estrutura para armazenar o numero de linhas
 
@@ -152,15 +152,15 @@ void populate_array()
                 o problema disso é que eu devo passar o meu vetor para o a função
                 glDrawElements que desenha todos os pontos
         +3 por causa do modo de abrir fscanf
-*/
+        */
         // test if can access this array with DrawElements
-        static void *vertices_ptr;
-        vertices_ptr = malloc(sizeof(double)*linesCount*3+3);
+        GLdouble *vertices_ptr;
+        vertices_ptr = malloc(sizeof(GLdouble)*linesCount*3+3);
         
         for (int i = 1, cursor = 0; cursor != EOF; i++) {       
-                cursor = fscanf(cloudFile, "%lf %lf %lf \n",  &((double *)vertices_ptr)[3*(i-1)    ], 
-                                                              &((double *)vertices_ptr)[3*(i-1) + 1], 
-                                                              &((double *)vertices_ptr)[3*(i-1) + 2]);
+                cursor = fscanf(cloudFile, "%lf %lf %lf \n",  &((GLdouble *)vertices_ptr)[3*(i-1)    ], 
+                                                              &((GLdouble *)vertices_ptr)[3*(i-1) + 1], 
+                                                              &((GLdouble *)vertices_ptr)[3*(i-1) + 2]);
         } 
         vertex_ptr = vertices_ptr;
         
@@ -177,19 +177,19 @@ void display_vertex_array(void)
         glColor3f(1, 1, 1);
         glEnableClientState(GL_VERTEX_ARRAY); 
        
-        glVertexPointer(3, GL_FLOAT, 0, vertex_ptr);
+        glVertexPointer(3, GL_DOUBLE, 0, vertex_ptr);
         
-        //glDrawElements(GL_POINTS, vertex_count, GL_UNSIGNED_INT, vertex_ptr);
-        glBegin(GL_POINTS);
-        //         glArrayElement(0);
-        //         glArrayElement(1);
-        //         glArrayElement(2);
-        //         glArrayElement(3);
-                for (int i = 0; i <= vertex_count; i++) {
-                        glArrayElement(i);
-                }
+        glDrawElements(GL_POINTS, vertex_count, GL_UNSIGNED_INT, vertex_ptr);
+        // glBegin(GL_POINTS);
+        // //         glArrayElement(0);
+        // //         glArrayElement(1);
+        // //         glArrayElement(2);
+        // //         glArrayElement(3);
+        //         for (int i = 1000; i <= vertex_count; i++) {
+        //                 glArrayElement(i);
+        //         }
 
-        glEnd();
+        //glEnd();
 
         glDisableClientState(GL_VERTEX_ARRAY);
         glFlush();
@@ -219,7 +219,7 @@ int main(int argc, char** argv)
         // populate_array();
         // print_3d_array(vertex_ptr, 12360, 12400);
         // printf("%d\n\n", vertex_count);
-        defualtBody(argc, argv);
+       defualtBody(argc, argv);
 /*/
         FILE *cloudFile;
         cloudFile = fopen ("./cloud_f.xyz","r");
