@@ -149,32 +149,21 @@ void populate_array()
                                                               &((double *)vertices_ptr)[3*(i-1) + 1], 
                                                               &((double *)vertices_ptr)[3*(i-1) + 2]);
                 
+                
+        } 
+        
+        for (int i = 12360; i <= 12400 ;  i++) {
+
                 printf("%d - %lf %lf %lf \n",i ,  ((double *)vertices_ptr)[3*(i-1)    ], 
                                                   ((double *)vertices_ptr)[3*(i-1) + 1], 
                                                   ((double *)vertices_ptr)[3*(i-1) + 2]);
-        } 
-        // for (int linha = 1; linha <= 2; linha++) {  
 
-        //         fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
-                
-                
-        //                                         //     ((float *)vertices_ptr)[3*(linha-1)    ], 
-        //                                         //     ((float *)vertices_ptr)[3*(linha-1) + 1], 
-        //                                         //     ((float *)vertices_ptr)[3*(linha-1) + 2]);
-                
-        //         printf("%d - %lf %lf %lf \n", linha, x, y, z );
-                
-                
-        //                                         //      ((float *)vertices_ptr)[3*(linha-1)    ], 
-        //                                         //      ((float *)vertices_ptr)[3*(linha-1) + 1], 
-        //                                         //      ((float *)vertices_ptr)[3*(linha-1) + 2]);
-              
-        // }
+         }
         printf("\n\n");
 
       
-        // for(int i = 0; i <= 3; i++)
-        //         printf("\n lines count: %i  ==  %f ", linesCount, ((float *)vertices_ptr)[3*16082*i]);
+        for(int i = 0; i <= 3; i++)
+                printf("\n lines count: %i  ==  %f ", linesCount, ((float *)vertices_ptr)[3*16082*i]);
 
 
 }
