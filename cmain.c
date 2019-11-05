@@ -104,8 +104,24 @@ static GLfloat vertices2[] = { 0,   0, 1,
                              2.0, 2.5, 1,
                              3.5, 3.5, 1};
 
+void print_3d_array(void *ptrToArray, int begin, int end) 
+{
+        for (int i = begin; i <= end ;  i++) {
+                printf("%d - %lf %lf %lf \n",i ,  ((double *)ptrToArray)[3*(i-1)    ], 
+                                                  ((double *)ptrToArray)[3*(i-1) + 1], 
+                                                  ((double *)ptrToArray)[3*(i-1) + 2]);
+        }
+}
+
 void populate_array() 
-{      
+{
+/*
+        1 - abrir nuvem
+        2 - contar numero de linhas
+        3 - usar o numero de linhas para alocar dinaçicamente meu vetor
+        4 - popular o vetor
+        sera nescessario o numero de linhas do arquivo ?
+*/      
         FILE *cloudFile;
         cloudFile = fopen ("./cloud_f.xyz","r");
 
@@ -113,59 +129,34 @@ void populate_array()
                 printf ("File not created okay, errno = %d\n", errno);
                 //return 1;
         }
-        
+
         int linesCount = 0;
         for (char c = getc(cloudFile); c != EOF; c = getc(cloudFile)) {
                 if (c == '\n')
                         linesCount = linesCount + 1;
         }
 
-        // rewind(cloudFile);
-        fclose(cloudFile);
-        cloudFile = fopen ("./cloud_f.xyz","r");
+        rewind(cloudFile);
 /*
         //nao vou usar o mais 1 pq eu ja vou usar o array o tamanho certo 
         // devo encontrar outa estrutura para armazenar o numero de linhas
 
         //((float *)vertices_ptr)[0] = linesCount;
+                o problema disso é que eu devo passar o meu vetor para o a função
+                glDrawElements que desenha todos os pontos
         +3 por causa do modo de abrir fscanf
 */
         void *vertices_ptr = malloc(sizeof(double)*linesCount*3+3);
         
-/* //povoar array
-        pega todos os caracteres na linha ponto final, hifen etc
-
-
-*/
-        // linesCount
-        double x, y, z;
-        x = y = z = 0;
-
-        // estava olhando nuvem errada
-
         for (int i = 1, cursor = 0; cursor != EOF; i++) {       
-                //cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
                 cursor = fscanf(cloudFile, "%lf %lf %lf \n",  &((double *)vertices_ptr)[3*(i-1)    ], 
                                                               &((double *)vertices_ptr)[3*(i-1) + 1], 
                                                               &((double *)vertices_ptr)[3*(i-1) + 2]);
-                
-                
         } 
         
-        for (int i = 12360; i <= 12400 ;  i++) {
-
-                printf("%d - %lf %lf %lf \n",i ,  ((double *)vertices_ptr)[3*(i-1)    ], 
-                                                  ((double *)vertices_ptr)[3*(i-1) + 1], 
-                                                  ((double *)vertices_ptr)[3*(i-1) + 2]);
-
-         }
-        printf("\n\n");
-
-      
-        for(int i = 0; i <= 3; i++)
-                printf("\n lines count: %i  ==  %f ", linesCount, ((float *)vertices_ptr)[3*16082*i]);
-
-
+        // print_3d_array(vertices_ptr, 12360, 12400);  //teste
+        // printf("\n\n");
+        // printf("\n lines count: %i  ==  %f ", linesCount, ((float *)vertices_ptr)[3*16082*i]);
 }
 
 void display_vertex_array(void) 
@@ -215,9 +206,9 @@ int main(int argc, char** argv)
 
         //printf("hello openGL\n");
         //defualtBody(argc, argv);
-   //     populate_array();
+        populate_array();
 
-//
+/*/
         FILE *cloudFile;
         cloudFile = fopen ("./cloud_f.xyz","r");
 
