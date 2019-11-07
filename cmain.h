@@ -12,18 +12,13 @@
 #include <errno.h>
 
 
-void draw_cloud(FILE * cloudFile);
- 
-void displayMe(FILE * cloudFile);
+static GLdouble *vertex_ptr;
+static int vertex_count;
 
-int open_cloud_file();
+void defualtBody(int argc, char** argv);
 
-int open_cloud_n_print(FILE *cloudFile);
+void displayMe2(void);
 
-void read_cloud_line();
-
-
-void defualtBody(int argc, char** argv, FILE * cloudFile);
-
+void populate_array();
 
 #endif // CMAIN_H
