@@ -21,4 +21,6 @@ void displayMe2(void);
 
 void populate_array();
 
+void display_vertex_array(void);
+
 #endif // CMAIN_H

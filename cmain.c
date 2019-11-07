@@ -92,14 +92,7 @@ void print_3d_array(void *ptrToArray, int begin, int end)
 //  ------------------------------------------------
 
 
-
-
-
-
-
-
-
-void display_vertex_array(void) 
+void display_vertex_array_element(void) 
 {       
         // função que vai printar a minha nuvem corretamente
         //nao esta funcionando
@@ -127,8 +120,16 @@ void display_vertex_array(void)
         glFlush();
 } 
 
+
+
+
+
+
+
+
 void read_array_gl_vertex(void) 
-{
+{       
+        // nao funciona ainda
         // solução provisória usando vertex array
         glClearColor(0, 0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
@@ -152,6 +153,7 @@ void read_array_gl_vertex(void)
 int main(int argc, char** argv)
 {
         //
+        populate_array();
         defualtBody(argc, argv);
 
 
@@ -176,36 +178,12 @@ void defualtBody(int argc, char** argv)
         glutCreateWindow("Hello world!");
 
 
-        glutDisplayFunc(displayMe2);
+        glutDisplayFunc(display_vertex_array);
         glutMainLoop();
         
 }
 
-void displayMe2(void) 
-{   
-        // nao adianta fazer alterações na assinatura dessa funçaõ 
-        // callback e funções de desenhar
-        double x, y, z;
-        x = y = z = 0;
 
-        FILE *cloudFile;
-        cloudFile = fopen ("./clouds/cloud_f.xyz","r");
-
-        if (cloudFile == NULL) {
-                printf ("File not created okay, errno = %d\n", errno);
-                //return 1;
-        }
-
-        glClear(GL_COLOR_BUFFER_BIT);
-        glBegin(GL_POINTS);
-                for(int i = 1, cursor = 0; cursor != EOF; i++) {       
-                        cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
-                        glVertex3f(x, -y, z);
-                        //glVertex3f(x, -factor*y, factor*z);
-                }
-        glEnd();
-        glFlush();
-}
 
 
 void populate_array() 
@@ -213,7 +191,7 @@ void populate_array()
         /*
             1 - abrir nuvem
             2 - contar numero de linhas
-            3 - usar o numero de linhas para alocar dinaçicamente meu vetor
+            3 - usar o numero de linhas para alocar dinamicamente meu vetor
             4 - popular o vetor
             sera nescessario o numero de linhas do arquivo ?
         */      
@@ -253,7 +231,59 @@ void populate_array()
         } 
         vertex_ptr = vertices_ptr;
         
-        print_3d_array(vertex_ptr, 12360, 12400);  //teste
-        printf("\n\n");
+        // print_3d_array(vertex_ptr, 12360, 12400);  //teste
+        // printf("\n\n");
         // //printf("\n lines count: %i  ==  %f ", linesCount, ((float *)vertices_ptr)[3*16082*i]);
+}
+
+void display_vertex_array(void) 
+{       
+        glClearColor(0, 0, 0, 1);
+        glClear(GL_COLOR_BUFFER_BIT);
+        glColor3f(1, 1, 1);
+
+
+        glEnableClientState(GL_VERTEX_ARRAY); 
+
+                                        //vertex_ptr+1 ?? 
+        glVertexPointer(3, GL_DOUBLE, 0, vertex_ptr);
+
+
+        unsigned int index[vertex_count];
+        for (int i = 0 ; i < vertex_count; i++) {
+                index[i] = i;
+        }
+
+        glDrawElements(GL_POINTS, vertex_count, GL_UNSIGNED_INT, index);
+      
+        glDisableClientState(GL_VERTEX_ARRAY);
+        glFlush();
+} 
+
+
+
+void displayMe2(void) 
+{   
+        // nao adianta fazer alterações na assinatura dessa funçaõ 
+        // callback e funções de desenhar
+        double x, y, z;
+        x = y = z = 0;
+
+        FILE *cloudFile;
+        cloudFile = fopen ("./clouds/cloud_f.xyz","r");
+
+        if (cloudFile == NULL) {
+                printf ("File not created okay, errno = %d\n", errno);
+                //return 1;
+        }
+
+        glClear(GL_COLOR_BUFFER_BIT);
+        glBegin(GL_POINTS);
+                for(int i = 1, cursor = 0; cursor != EOF; i++) {       
+                        cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
+                        glVertex3f(x, -y, z);
+                        //glVertex3f(x, -factor*y, factor*z);
+                }
+        glEnd();
+        glFlush();
 }
