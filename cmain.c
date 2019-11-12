@@ -20,6 +20,7 @@
 
 #include "cmain.h"
 
+
 void draw_cloud(FILE * cloudFile)
 {       
         double x, y, z;
@@ -32,6 +33,7 @@ void draw_cloud(FILE * cloudFile)
                 }
         glEnd();
 }
+
 
 void displayMe_WITH_POITER(FILE * cloudFile)
 {
@@ -56,6 +58,7 @@ int open_cloud_file()
     return 1;//open the cloud file
 }
 
+
 int open_cloud_n_print(FILE *  cloudFile)
 {
         double x, y, z;
@@ -68,10 +71,12 @@ int open_cloud_n_print(FILE *  cloudFile)
         return 1;
 }
 
+
 void read_cloud_line()
 {
     // operatins read each cloud line
 }
+
 
 static GLfloat vertices2[] = { 0,   0, 1,
                              0.5,   0, 1,
@@ -89,13 +94,13 @@ void print_3d_array(void *ptrToArray, int begin, int end)
         }
 }
 
+
 //  ------------------------------------------------
-
-
 void display_vertex_array_element(void) 
 {       
-        // função que vai printar a minha nuvem corretamente
-        //nao esta funcionando
+        // função deveria imprimir usando glVertex para imprimir pontos
+        // a partir de um array 
+
         glClearColor(0, 0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
    
@@ -121,41 +126,10 @@ void display_vertex_array_element(void)
 } 
 
 
-
-
-
-
-
-
-void read_array_gl_vertex(void) 
-{       
-        // nao funciona ainda
-        // solução provisória usando vertex array
-        glClearColor(0, 0, 0, 1);
-        glClear(GL_COLOR_BUFFER_BIT);
-   
-        glColor3f(1, 1, 1);
-        glBegin(GL_POINTS);
-
-                for(int i = 1; i <= 300000; i++) {       
-                        glVertex3f( ((double *)vertex_ptr)[3*(i-1)    ], 
-                                    ((double *)vertex_ptr)[3*(i-1) + 1], 
-                                    ((double *)vertex_ptr)[3*(i-1) + 2]);
-                }
-        glEnd();
-       
-        glFlush();
-}
-
-
-
-
 int main(int argc, char** argv)
 {
-        //
         populate_array();
         defualtBody(argc, argv);
-
 
 
         /*/ 
@@ -178,12 +152,11 @@ void defualtBody(int argc, char** argv)
         glutCreateWindow("Hello world!");
 
 
+        //glutDisplayFunc(display_vertex_array);
         glutDisplayFunc(display_vertex_array);
         glutMainLoop();
         
 }
-
-
 
 
 void populate_array() 
@@ -261,11 +234,9 @@ void display_vertex_array(void)
 } 
 
 
-
 void displayMe2(void) 
 {   
-        // nao adianta fazer alterações na assinatura dessa funçaõ 
-        // callback e funções de desenhar
+        // 
         double x, y, z;
         x = y = z = 0;
 
