@@ -2,7 +2,7 @@
 /*
  create script for it
  freeglut linux
-    gcc cmain.c -o cwindow -lglut -lGL // funciona  
+    gcc cmain.c -o cwindow -lglut -lGL -lGLU // deve incluir glu  
  mac 
     gcc cmain.c -o cwindow  -framework OpenGL -framework GLUT */
 
@@ -214,11 +214,15 @@ void display_vertex_array(void)
         glClearColor(0, 0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
         glColor3f(1, 1, 1);
+//
+        glLoadIdentity();
+        gluLookAt(0, 0, 0,
+                  0, 0, -1,
+                  0, 1, 0);
 
-
+//
         glEnableClientState(GL_VERTEX_ARRAY); 
-
-                                        //vertex_ptr+1 ?? 
+                                         
         glVertexPointer(3, GL_DOUBLE, 0, vertex_ptr);
 
 
