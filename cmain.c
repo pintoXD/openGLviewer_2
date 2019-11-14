@@ -217,8 +217,11 @@ void display_vertex_array(void)
 //
         glLoadIdentity();
         gluLookAt(0, 0, 0,
-                  0, 0, -1,
+                  0, 0, -5,
                   0, 1, 0);
+
+        // glTranslatef(0.0, 0.0, -5.0); //nao funciona como o livro indica
+        glScalef(1.2, -1.5, 1);
 
 //
         glEnableClientState(GL_VERTEX_ARRAY); 
