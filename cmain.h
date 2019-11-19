@@ -23,4 +23,47 @@ void populate_array();
 
 void display_vertex_array(void);
 
+
+//-----------------------------------
+
+void draw_cloud(FILE * cloudFile);
+// draw cloud with most primitive openGL function
+// for painting glVertex()
+//
+
+
+void displayMe_WITH_POITER(FILE * cloudFile);
+// draw point cloud after it's been stored in
+// a array
+//
+
+int open_cloud_file();
+// middleware 
+// yet to be 
+
+
+int open_cloud_file();
+// potentially useful
+// 
+//
+
+
+int open_cloud_n_print(FILE *  cloudFile);
+//  prints file contents on prompt
+//
+//
+
+void print_3d_array(void *ptrToArray, int begin, int end);
+//  facilitate array population analisys
+//
+//
+
+void display_vertex_array_element(void);
+// unproductive aprouch to displaying a cloud
+//
+// 
+
+
+
+
 #endif // CMAIN_H

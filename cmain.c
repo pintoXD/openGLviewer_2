@@ -1,4 +1,3 @@
-
 /*
  create script for it
  freeglut linux
@@ -20,110 +19,6 @@
 
 #include "cmain.h"
 
-
-void draw_cloud(FILE * cloudFile)
-{       
-        double x, y, z;
-        x = y = z = 0;
-
-        glBegin(GL_POINTS);
-                for (int i = 1, cursor = 0; cursor != EOF; i++) {       
-                        cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
-                        glVertex3f(x*30, y*-30, z*30);
-                }
-        glEnd();
-}
-
-
-void displayMe_WITH_POITER(FILE * cloudFile)
-{
-    glClear(GL_COLOR_BUFFER_BIT);
-    glBegin(GL_POLYGON);
-       
-        glVertex3f(0.5, 0.0, 0.5);
-        glVertex3f(0.5, 0.0, 0.0);
-        glVertex3f(0.0, 0.5, 0.0);
-        glVertex3f(0.0, 0.0, 0.5);
-    glEnd();
-    //glPointSize(10.0);  // doesn't work as I expected
-
-    // draw_cloud(cloudFile);
-    
-    glFlush();
-}
-
-
-int open_cloud_file()
-{
-    return 1;//open the cloud file
-}
-
-
-int open_cloud_n_print(FILE *  cloudFile)
-{
-        double x, y, z;
-        x = y = z = 0;
-
-        for (int i = 1, cursor = 0; cursor != EOF; i++) {       
-                cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
-                printf("%d - %lf %lf %lf \n",i , x, y, z);
-        } 
-        return 1;
-}
-
-
-void read_cloud_line()
-{
-    // operatins read each cloud line
-}
-
-
-static GLfloat vertices2[] = { 0,   0, 1,
-                             0.5,   0, 1,
-                             0.5, 0.5, 1,
-                               0, 0.8, 1,
-                             2.0, 2.5, 1,
-                             3.5, 3.5, 1};
-
-void print_3d_array(void *ptrToArray, int begin, int end) 
-{
-        for (int i = begin; i <= end ;  i++) {
-                printf("%d - %lf %lf %lf \n",i ,  ((double *)ptrToArray)[3*(i-1)    ], 
-                                                  ((double *)ptrToArray)[3*(i-1) + 1], 
-                                                  ((double *)ptrToArray)[3*(i-1) + 2]);
-        }
-}
-
-
-//  ------------------------------------------------
-void display_vertex_array_element(void) 
-{       
-        // função deveria imprimir usando glVertex para imprimir pontos
-        // a partir de um array 
-
-        glClearColor(0, 0, 0, 1);
-        glClear(GL_COLOR_BUFFER_BIT);
-   
-        glColor3f(1, 1, 1);
-        glEnableClientState(GL_VERTEX_ARRAY); 
-       
-        glVertexPointer(3, GL_DOUBLE, 0, vertex_ptr);
-        
-        glDrawElements(GL_POINTS, vertex_count, GL_UNSIGNED_INT, vertex_ptr);
-        // glBegin(GL_POINTS);
-        // //         glArrayElement(0);
-        // //         glArrayElement(1);
-        // //         glArrayElement(2);
-        // //         glArrayElement(3);
-        //         for (int i = 1000; i <= vertex_count; i++) {
-        //                 glArrayElement(i);
-        //         }
-
-        //glEnd();
-
-        glDisableClientState(GL_VERTEX_ARRAY);
-        glFlush();
-} 
 
 
 int main(int argc, char** argv)
@@ -265,3 +160,107 @@ void displayMe2(void)
         glEnd();
         glFlush();
 }
+
+
+
+
+// -----------------------------------------------------
+
+void draw_cloud(FILE * cloudFile)
+{       
+        double x, y, z;
+        x = y = z = 0;
+
+        glBegin(GL_POINTS);
+                for (int i = 1, cursor = 0; cursor != EOF; i++) {       
+                        cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
+                        glVertex3f(x*30, y*-30, z*30);
+                }
+        glEnd();
+}
+
+
+void displayMe_WITH_POITER(FILE * cloudFile)
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+    glBegin(GL_POLYGON);
+       
+        glVertex3f(0.5, 0.0, 0.5);
+        glVertex3f(0.5, 0.0, 0.0);
+        glVertex3f(0.0, 0.5, 0.0);
+        glVertex3f(0.0, 0.0, 0.5);
+    glEnd();
+    //glPointSize(10.0);  // doesn't work as I expected
+
+    // draw_cloud(cloudFile);
+    
+    glFlush();
+}
+
+
+int open_cloud_file()
+{
+    return 1;//open the cloud file
+}
+
+
+int open_cloud_n_print(FILE *  cloudFile)
+{
+        double x, y, z;
+        x = y = z = 0;
+
+        for (int i = 1, cursor = 0; cursor != EOF; i++) {       
+                cursor = fscanf(cloudFile, "%lf %lf %lf \n", &x, &y, &z);
+                printf("%d - %lf %lf %lf \n",i , x, y, z);
+        } 
+        return 1;
+}
+
+
+void print_3d_array(void *ptrToArray, int begin, int end) 
+{
+        for (int i = begin; i <= end ;  i++) {
+                printf("%d - %lf %lf %lf \n",i ,  ((double *)ptrToArray)[3*(i-1)    ], 
+                                                  ((double *)ptrToArray)[3*(i-1) + 1], 
+                                                  ((double *)ptrToArray)[3*(i-1) + 2]);
+        }
+}
+
+
+void display_vertex_array_element(void) 
+{       
+        // função deveria imprimir usando glVertex para imprimir pontos
+        // a partir de um array 
+
+        glClearColor(0, 0, 0, 1);
+        glClear(GL_COLOR_BUFFER_BIT);
+   
+        glColor3f(1, 1, 1);
+        glEnableClientState(GL_VERTEX_ARRAY); 
+       
+        glVertexPointer(3, GL_DOUBLE, 0, vertex_ptr);
+        
+        glDrawElements(GL_POINTS, vertex_count, GL_UNSIGNED_INT, vertex_ptr);
+        // glBegin(GL_POINTS);
+        // //         glArrayElement(0);
+        // //         glArrayElement(1);
+        // //         glArrayElement(2);
+        // //         glArrayElement(3);
+        //         for (int i = 1000; i <= vertex_count; i++) {
+        //                 glArrayElement(i);
+        //         }
+
+        //glEnd();
+
+        glDisableClientState(GL_VERTEX_ARRAY);
+        glFlush();
+} 
+
+
+// used to test vertex array functions
+static GLfloat vertices2[] = { 0,   0, 1,
+                             0.5,   0, 1,
+                             0.5, 0.5, 1,
+                               0, 0.8, 1,
+                             2.0, 2.5, 1,
+                             3.5, 3.5, 1};
