@@ -12,8 +12,11 @@
 #include <errno.h>
 
 
+
 static GLdouble *vertex_ptr;
 static int vertex_count;
+
+static GLfloat scaleY = -0.9;
 
 void defualt_body(int argc, char** argv);
 
@@ -25,7 +28,11 @@ void display_vertex_array(void);
 
 void press_arrow_key(int key, int x, int y);
 
+void press_abc_key(unsigned char key, int x, int y);
 
+void increase_y_scale(void);
+
+void decrease_y_scale(void);
 //-----------------------------------
 
 void draw_cloud(FILE * cloudFile);

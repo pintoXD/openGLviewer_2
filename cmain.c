@@ -99,6 +99,7 @@ void defualt_body(int argc, char** argv)
         glutDisplayFunc(display_vertex_array);
 
         glutSpecialFunc( press_arrow_key );
+        glutKeyboardFunc( press_abc_key );
         glutMainLoop();
         
 }
@@ -109,25 +110,43 @@ void press_arrow_key(int key, int x, int y)
                 printf("Left key is pressed\n");
         else if(key == GLUT_KEY_RIGHT)
                 printf("Right key is pressed\n");
-        else if(key == GLUT_KEY_DOWN)
+        else if(key == GLUT_KEY_DOWN){
                 printf("Down key is pressed\n");
-        else if(key == GLUT_KEY_UP)
+                decrease_y_scale();
+        }
+        else if(key == GLUT_KEY_UP){
+                printf("Up key is pressed\n");
+                increase_y_scale();
+        }  
+}
+
+
+
+void press_abc_key(unsigned char key, int x, int y)
+{
+        if(key == 'a' ){
+                printf("Left key is pressed\n");
+        }  
+                
+        else if(key == 'd' )
+                printf("Right key is pressed\n");
+        else if(key == 's' )
+                printf("Down key is pressed\n");
+        else if(key == 'w')
                 printf("Up key is pressed\n");
 }
 
-// void
-// catchKey(int key, int x, int y)
-// {
-//     if(key == GLUT_KEY_LEFT)    
-//         printf("Left key is pressed\n");
-//     else if(key == GLUT_KEY_RIGHT)
-//         printf("Right key is pressed\n");
-//     else if(key == GLUT_KEY_DOWN)
-//         printf("Down key is pressed\n");
-//     else if(key == GLUT_KEY_UP)
-//         printf("Up key is pressed\n");
-// }
+void increase_y_scale(void)
+{
+        scaleY = scaleY - 0.01;
+        glutPostRedisplay();
+}
 
+void decrease_y_scale(void)
+{
+        scaleY = scaleY + 0.01;
+        glutPostRedisplay();
+}
 
 void display_vertex_array(void) 
 {       
@@ -141,7 +160,7 @@ void display_vertex_array(void)
                   0, 1, 0);
 
         // glTranslatef(0.0, 0.0, -5.0); //nao funciona como o livro indica
-        glScalef(1.2, -1.5, 1);
+        glScalef(1.2, scaleY, 1);
         // ideia on mouse event update glScalef()
 
 //
