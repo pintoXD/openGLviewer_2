@@ -20,14 +20,13 @@
 #include "cmain.h"
 
 
-
 int main(int argc, char** argv)
 {
         populate_array();
-        defualtBody(argc, argv);
+        defualt_body(argc, argv);
 
 
-        /*/ 
+        /*/     
                 //test for static array of points
         
                 populate_array();
@@ -37,22 +36,6 @@ int main(int argc, char** argv)
 
         return 0;
 }
-
-void defualtBody(int argc, char** argv)
-{
-        glutInit(&argc, argv);
-        glutInitDisplayMode(GLUT_SINGLE);
-        glutInitWindowSize(800, 600);
-        glutInitWindowPosition(100, 100);
-        glutCreateWindow("Hello world!");
-
-
-        //glutDisplayFunc(display_vertex_array);
-        glutDisplayFunc(display_vertex_array);
-        glutMainLoop();
-        
-}
-
 
 void populate_array() 
 {
@@ -104,6 +87,48 @@ void populate_array()
         // //printf("\n lines count: %i  ==  %f ", linesCount, ((float *)vertices_ptr)[3*16082*i]);
 }
 
+
+void defualt_body(int argc, char** argv)
+{
+        glutInit(&argc, argv);
+        glutInitDisplayMode(GLUT_SINGLE);
+        glutInitWindowSize(800, 600);
+        glutInitWindowPosition(100, 100);
+        glutCreateWindow("Hello world!");
+
+        glutDisplayFunc(display_vertex_array);
+
+        glutSpecialFunc( press_arrow_key );
+        glutMainLoop();
+        
+}
+
+void press_arrow_key(int key, int x, int y)
+{
+        if(key == GLUT_KEY_LEFT)    
+                printf("Left key is pressed\n");
+        else if(key == GLUT_KEY_RIGHT)
+                printf("Right key is pressed\n");
+        else if(key == GLUT_KEY_DOWN)
+                printf("Down key is pressed\n");
+        else if(key == GLUT_KEY_UP)
+                printf("Up key is pressed\n");
+}
+
+// void
+// catchKey(int key, int x, int y)
+// {
+//     if(key == GLUT_KEY_LEFT)    
+//         printf("Left key is pressed\n");
+//     else if(key == GLUT_KEY_RIGHT)
+//         printf("Right key is pressed\n");
+//     else if(key == GLUT_KEY_DOWN)
+//         printf("Down key is pressed\n");
+//     else if(key == GLUT_KEY_UP)
+//         printf("Up key is pressed\n");
+// }
+
+
 void display_vertex_array(void) 
 {       
         glClearColor(0, 0, 0, 1);
@@ -117,6 +142,7 @@ void display_vertex_array(void)
 
         // glTranslatef(0.0, 0.0, -5.0); //nao funciona como o livro indica
         glScalef(1.2, -1.5, 1);
+        // ideia on mouse event update glScalef()
 
 //
         glEnableClientState(GL_VERTEX_ARRAY); 

@@ -15,13 +15,15 @@
 static GLdouble *vertex_ptr;
 static int vertex_count;
 
-void defualtBody(int argc, char** argv);
+void defualt_body(int argc, char** argv);
 
 void displayMe2(void);
 
 void populate_array();
 
 void display_vertex_array(void);
+
+void press_arrow_key(int key, int x, int y);
 
 
 //-----------------------------------
