@@ -159,6 +159,8 @@ void display_vertex_array(void)
                   0, 0, -5,
                   0, 1, 0);
 
+        // play with gluLookAt 105 -> viewing 
+
         // glTranslatef(0.0, 0.0, -5.0); //nao funciona como o livro indica
         glScalef(1.2, scaleY, 1);
         // ideia on mouse event update glScalef()
