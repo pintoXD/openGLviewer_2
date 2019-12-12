@@ -18,7 +18,14 @@ static int vertex_count;
 
 static GLfloat scaleY = -0.9;
 
-static GLfloat  zoomFactor = 1.0;
+static GLfloat zoomFactor = 1.0;
+
+static GLfloat x_desplacement = 0.0; //fir glTranslatef 
+static GLfloat y_desplacement = 0.0;
+static GLfloat z_desplacement = 0.0;
+
+static GLfloat x_rotation_angle = 0.0;
+static GLfloat y_rotation_angle = 0.0;
 
 void defualt_body(int argc, char** argv);
 
@@ -42,6 +49,11 @@ void zoom_out_1(void);
 void translate_negative_x(void);
 void translate_positive_x(void);
 
+void rotate_x_axis_positive(void);
+void rotate_x_axis_negative(void);
+
+void rotate_y_axis_positive(void);
+void rotate_y_axis_negative(void);
 
 //----------------------------
 

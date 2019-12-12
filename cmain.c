@@ -106,20 +106,20 @@ void defualt_body(int argc, char** argv)
 
 void press_arrow_key(int key, int x, int y)
 {
-        if(key == GLUT_KEY_LEFT){
-                glLoadIdentity();
-                translate_negative_x();
-                // [ ] not working
-        }    
+        if(key == GLUT_KEY_LEFT)
+                translate_negative_x();  
         else if(key == GLUT_KEY_RIGHT)
-                printf("Right key is pressed\n");
+                translate_positive_x();
         else if(key == GLUT_KEY_DOWN){
                 printf("Down key is pressed\n");
-                decrease_y_scale();
+                rotate_x_axis_positive();
+                //decrease_y_scale();
+
         }
         else if(key == GLUT_KEY_UP){
                 printf("Up key is pressed\n");
-                increase_y_scale();
+                rotate_y_axis_positive();
+                //increase_y_scale();
         }  
 }
 
@@ -146,39 +146,75 @@ void press_abc_key(unsigned char key, int x, int y)
                 printf("i key pressed\n");
                 zoom_out_1();
         }
+        else if(key == 'k') {
+                rotate_x_axis_positive();
+        }
+        else if(key == 'l') {
+                rotate_x_axis_negative();
+        }
+        else if(key == 'n') {
+                rotate_y_axis_positive();
+        }
+        else if(key == 'm') {
+                rotate_y_axis_negative();
+        }
 
 }
 // ---------------------------------------------------
 // [ ] global variable + glScale()
 void zoom_in_1(void)
 {
-        zoomFactor = zoomFactor*0.98;
+        zoomFactor = zoomFactor/0.98;
         glutPostRedisplay();
 }
 
 void zoom_out_1(void)
 {
-        zoomFactor = zoomFactor*1.02;
+        zoomFactor = zoomFactor*0.98;
         glutPostRedisplay();
 }
 // ------------------------------------------------
 // translate 
+// not working
+
 void translate_negative_x(void)
 {
-        glTranslatef(-1.0, 0.0, 0.0);
+        x_desplacement = x_desplacement - 0.03;
         glutPostRedisplay();
 }
-
 void translate_positive_x(void)
 {
-        glTranslatef(1.0, 0.0, 0.0);
+        x_desplacement = x_desplacement + 0.03;
+        glutPostRedisplay();
+}
+// ---------------------------------------------------
+void rotate_x_axis_positive(void)
+{
+        x_rotation_angle = x_rotation_angle + 0.5;
         glutPostRedisplay();
 }
 
+void rotate_x_axis_negative(void)
+{
+        x_rotation_angle = x_rotation_angle - 0.5;
+        glutPostRedisplay();
+}
+
+
+void rotate_y_axis_positive(void)
+{
+        y_rotation_angle = y_rotation_angle + 0.5;
+        glutPostRedisplay();
+}
+
+void rotate_y_axis_negative(void)
+{
+        y_rotation_angle = y_rotation_angle - 0.5;
+        glutPostRedisplay();
+}
 
 
 // ---------------------------------------------------
-
 
 void increase_y_scale(void)
 {
@@ -206,9 +242,13 @@ void display_vertex_array(void)
 
         // play with gluLookAt 105 -> viewing 
 
-        // glTranslatef(0.0, 0.0, -5.0); //nao funciona como o livro indica
-        glScalef(1*zoomFactor, scaleY*zoomFactor, 1*zoomFactor);  
-        // fazer variaveis globais para isso
+        
+        glScalef(1*zoomFactor, scaleY*zoomFactor, 1*zoomFactor);
+        glTranslatef(x_desplacement, y_desplacement, z_desplacement);
+        
+        glRotatef(x_rotation_angle, 1, 0, 0);
+        glRotatef(y_rotation_angle, 0, 1, 0);  
+       
 
         // ideia on mouse event update glScalef()
 
