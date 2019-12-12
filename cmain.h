@@ -49,6 +49,9 @@ void zoom_out_1(void);
 void translate_negative_x(void);
 void translate_positive_x(void);
 
+void translate_negative_y(void);
+void translate_positive_y(void); 
+
 void rotate_x_axis_positive(void);
 void rotate_x_axis_negative(void);
 

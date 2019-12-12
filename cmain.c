@@ -112,13 +112,12 @@ void press_arrow_key(int key, int x, int y)
                 translate_positive_x();
         else if(key == GLUT_KEY_DOWN){
                 printf("Down key is pressed\n");
-                rotate_x_axis_positive();
+                translate_negative_y();
                 //decrease_y_scale();
-
         }
         else if(key == GLUT_KEY_UP){
                 printf("Up key is pressed\n");
-                rotate_y_axis_positive();
+                translate_positive_y();
                 //increase_y_scale();
         }  
 }
@@ -185,6 +184,18 @@ void translate_negative_x(void)
 void translate_positive_x(void)
 {
         x_desplacement = x_desplacement + 0.03;
+        glutPostRedisplay();
+}
+
+
+void translate_negative_y(void)
+{
+        y_desplacement = y_desplacement - 0.03;
+        glutPostRedisplay();
+}
+void translate_positive_y(void)
+{
+        y_desplacement = y_desplacement + 0.03;
         glutPostRedisplay();
 }
 // ---------------------------------------------------
