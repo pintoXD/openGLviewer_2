@@ -106,8 +106,11 @@ void defualt_body(int argc, char** argv)
 
 void press_arrow_key(int key, int x, int y)
 {
-        if(key == GLUT_KEY_LEFT)    
-                printf("Left key is pressed\n");
+        if(key == GLUT_KEY_LEFT){
+                glLoadIdentity();
+                translate_negative_x();
+                // [ ] not working
+        }    
         else if(key == GLUT_KEY_RIGHT)
                 printf("Right key is pressed\n");
         else if(key == GLUT_KEY_DOWN){
@@ -134,7 +137,48 @@ void press_abc_key(unsigned char key, int x, int y)
                 printf("Down key is pressed\n");
         else if(key == 'w')
                 printf("Up key is pressed\n");
+        
+        else if(key == 'i') {
+                printf("i key pressed\n");
+                zoom_in_1();
+        }
+        else if(key == 'o') {
+                printf("i key pressed\n");
+                zoom_out_1();
+        }
+
 }
+// ---------------------------------------------------
+// [ ] global variable + glScale()
+void zoom_in_1(void)
+{
+        zoomFactor = zoomFactor*0.98;
+        glutPostRedisplay();
+}
+
+void zoom_out_1(void)
+{
+        zoomFactor = zoomFactor*1.02;
+        glutPostRedisplay();
+}
+// ------------------------------------------------
+// translate 
+void translate_negative_x(void)
+{
+        glTranslatef(-1.0, 0.0, 0.0);
+        glutPostRedisplay();
+}
+
+void translate_positive_x(void)
+{
+        glTranslatef(1.0, 0.0, 0.0);
+        glutPostRedisplay();
+}
+
+
+
+// ---------------------------------------------------
+
 
 void increase_y_scale(void)
 {
@@ -148,6 +192,7 @@ void decrease_y_scale(void)
         glutPostRedisplay();
 }
 
+//----------------------------------- display functions
 void display_vertex_array(void) 
 {       
         glClearColor(0, 0, 0, 1);
@@ -162,7 +207,9 @@ void display_vertex_array(void)
         // play with gluLookAt 105 -> viewing 
 
         // glTranslatef(0.0, 0.0, -5.0); //nao funciona como o livro indica
-        glScalef(1.2, scaleY, 1);
+        glScalef(1*zoomFactor, scaleY*zoomFactor, 1*zoomFactor);  
+        // fazer variaveis globais para isso
+
         // ideia on mouse event update glScalef()
 
 //

@@ -18,6 +18,8 @@ static int vertex_count;
 
 static GLfloat scaleY = -0.9;
 
+static GLfloat  zoomFactor = 1.0;
+
 void defualt_body(int argc, char** argv);
 
 void displayMe2(void);
@@ -34,6 +36,14 @@ void increase_y_scale(void);
 
 void decrease_y_scale(void);
 //-----------------------------------
+void zoom_in_1(void);
+void zoom_out_1(void);
+
+void translate_negative_x(void);
+void translate_positive_x(void);
+
+
+//----------------------------
 
 void draw_cloud(FILE * cloudFile);
 // draw cloud with most primitive openGL function
