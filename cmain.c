@@ -107,14 +107,13 @@ void press_arrow_key(int key, int x, int y)
                 translate_positive_x_m(&x_desplacement);
         else if(key == GLUT_KEY_DOWN){
                 printf("Down key is pressed\n");
-                translate_negative_y_m(&y_desplacement);
+                translate_positive_y_m(&y_desplacement);
         }
         else if(key == GLUT_KEY_UP){
                 printf("Up key is pressed\n");
-                translate_positive_y_m(&y_desplacement);
+                translate_negative_y_m(&y_desplacement);
         }  
 }
-
 
 
 void press_abc_key(unsigned char key, int x, int y)
@@ -151,31 +150,6 @@ void press_abc_key(unsigned char key, int x, int y)
                 rotate_y_axis_negative();
         }
 
-}
-// ------------------------------------------------
-
-
-void translate_negative_x(void)
-{
-        x_desplacement = x_desplacement - 0.03;
-        glutPostRedisplay();
-}
-void translate_positive_x(void)
-{
-        x_desplacement = x_desplacement + 0.03;
-        glutPostRedisplay();
-}
-
-
-void translate_negative_y(void)
-{
-        y_desplacement = y_desplacement - 0.03;
-        glutPostRedisplay();
-}
-void translate_positive_y(void)
-{
-        y_desplacement = y_desplacement + 0.03;
-        glutPostRedisplay();
 }
 // ---------------------------------------------------
 void rotate_x_axis_positive(void)
@@ -219,6 +193,7 @@ void decrease_y_scale(void)
 }
 
 //----------------------------------- display functions
+// [ ] tentar passar as funcoes de display para um .c separado
 void display_vertex_array(void) 
 {       
         glClearColor(0, 0, 0, 1);
@@ -379,12 +354,3 @@ void display_vertex_array_element(void)
         glDisableClientState(GL_VERTEX_ARRAY);
         glFlush();
 } 
-
-
-// used to test vertex array functions
-static GLfloat vertices2[] = { 0,   0, 1,
-                             0.5,   0, 1,
-                             0.5, 0.5, 1,
-                               0, 0.8, 1,
-                             2.0, 2.5, 1,
-                             3.5, 3.5, 1};

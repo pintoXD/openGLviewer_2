@@ -11,6 +11,13 @@
 #include <stdio.h>
 #include <errno.h>
 
+// used to test vertex array functions
+static GLfloat vertices2[] = { 0,   0, 1,
+                             0.5,   0, 1,
+                             0.5, 0.5, 1,
+                               0, 0.8, 1,
+                             2.0, 2.5, 1,
+                             3.5, 3.5, 1};
 
 
 static GLdouble *vertex_ptr;
@@ -43,16 +50,9 @@ void increase_y_scale(void);
 
 void decrease_y_scale(void);
 //-----------------------------------
-//void zoom_in_ptr(GLfloat *);
-//
-void zoom_in_1(void);
-void zoom_out_1(void);
 
-void translate_negative_x(void);
-void translate_positive_x(void);
 
-void translate_negative_y(void);
-void translate_positive_y(void); 
+void press_arrow_key(int key, int x, int y);
 
 void rotate_x_axis_positive(void);
 void rotate_x_axis_negative(void);
