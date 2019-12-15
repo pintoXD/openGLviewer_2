@@ -67,3 +67,30 @@ void zoom_out_m(GLfloat *zoomFactor)
         *zoomFactor = (*zoomFactor) * 0.98;
         glutPostRedisplay();
 }
+
+// -------------------------------------
+void rotate_x_axis_positive_m(GLfloat *x_rotation_angle)
+{
+        *x_rotation_angle = (*x_rotation_angle) + 0.5;
+        glutPostRedisplay(); 
+}
+
+void rotate_x_axis_negative_m(GLfloat *x_rotation_angle)
+{
+        *x_rotation_angle = (*x_rotation_angle) - 0.5;
+        glutPostRedisplay(); 
+}
+
+void rotate_y_axis_positive_m(GLfloat *y_rotation_angle)
+{
+        *y_rotation_angle = (*y_rotation_angle) + 0.5;
+        glutPostRedisplay(); 
+}
+
+void rotate_y_axis_negative_m(GLfloat *y_rotation_angle)
+{
+        *y_rotation_angle = (*y_rotation_angle) - 0.5;
+        glutPostRedisplay(); 
+}
+
+// -------------------------------------

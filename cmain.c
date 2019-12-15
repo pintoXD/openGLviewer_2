@@ -91,7 +91,7 @@ void defualt_body(int argc, char** argv)
         glutInitWindowPosition(100, 100);
         glutCreateWindow("Hello world!");
 
-        glutDisplayFunc(display_vertex_array);
+        glutDisplayFunc( display_vertex_array );
 
         glutSpecialFunc( press_arrow_key );
         glutKeyboardFunc( press_abc_key );
@@ -118,18 +118,7 @@ void press_arrow_key(int key, int x, int y)
 
 void press_abc_key(unsigned char key, int x, int y)
 {
-        if(key == 'a' ){
-                printf("Left key is pressed\n");
-        }  
-                
-        else if(key == 'd' )
-                printf("Right key is pressed\n");
-        else if(key == 's' )
-                printf("Down key is pressed\n");
-        else if(key == 'w')
-                printf("Up key is pressed\n");
-        
-        else if(key == 'i') {
+        if(key == 'i') {
                 printf("i key pressed\n");
                 zoom_in_m(&zoomFactor);
         }
@@ -138,16 +127,16 @@ void press_abc_key(unsigned char key, int x, int y)
                 zoom_out_m(&zoomFactor);
         }
         else if(key == 'k') {
-                rotate_x_axis_positive();
+                rotate_x_axis_positive_m(&x_rotation_angle);
         }
         else if(key == 'l') {
-                rotate_x_axis_negative();
+                rotate_x_axis_negative_m(&x_rotation_angle);
         }
         else if(key == 'n') {
-                rotate_y_axis_positive();
+                rotate_y_axis_positive_m(&y_rotation_angle);
         }
         else if(key == 'm') {
-                rotate_y_axis_negative();
+                rotate_y_axis_negative_m(&y_rotation_angle);
         }
 
 }
@@ -279,7 +268,7 @@ void draw_cloud(FILE * cloudFile)
 }
 
 
-void displayMe_WITH_POITER(FILE * cloudFile)
+void displayMe_with_pointer(FILE * cloudFile)
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glBegin(GL_POLYGON);

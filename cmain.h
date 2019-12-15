@@ -68,7 +68,7 @@ void draw_cloud(FILE * cloudFile);
 //
 
 
-void displayMe_WITH_POITER(FILE * cloudFile);
+void displayMe_with_pointer(FILE * cloudFile);
 // draw point cloud after it's been stored in
 // a array
 //
