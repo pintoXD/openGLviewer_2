@@ -5,13 +5,13 @@
  mac 
     gcc cmain.c -o cwindow  -framework OpenGL -framework GLUT */
 
-#ifdef __APPLE__
-    #define GL_SILENCE_DEPRECATION 
-    #include <GLUT/glut.h>         
-#endif
-#ifdef __linux__
-    #include <GL/glut.h>         
-#endif
+// #ifdef __APPLE__
+//     #define GL_SILENCE_DEPRECATION 
+//     #include <GLUT/glut.h>         
+// #endif
+// #ifdef __linux__
+//     #include <GL/glut.h>         
+// #endif
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -139,7 +139,7 @@ void press_abc_key(unsigned char key, int x, int y)
         
         else if(key == 'i') {
                 printf("i key pressed\n");
-                zoom_in_1();
+                zoom_in_ptr(&zoomFactor);
         }
         else if(key == 'o') {
                 printf("i key pressed\n");
@@ -161,6 +161,13 @@ void press_abc_key(unsigned char key, int x, int y)
 }
 // ---------------------------------------------------
 // [ ] global variable + glScale()
+void zoom_in_ptr(GLfloat *zoomFactor)
+{
+        *zoomFactor = (*zoomFactor)/0.98;
+        glutPostRedisplay();
+}
+
+
 void zoom_in_1(void)
 {
         zoomFactor = zoomFactor/0.98;
