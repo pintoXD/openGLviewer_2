@@ -43,7 +43,7 @@ void increase_y_scale(void);
 
 void decrease_y_scale(void);
 //-----------------------------------
-void zoom_in_ptr(GLfloat *);
+//void zoom_in_ptr(GLfloat *);
 //
 void zoom_in_1(void);
 void zoom_out_1(void);

@@ -5,19 +5,14 @@
  mac 
     gcc cmain.c -o cwindow  -framework OpenGL -framework GLUT */
 
-// #ifdef __APPLE__
-//     #define GL_SILENCE_DEPRECATION 
-//     #include <GLUT/glut.h>         
-// #endif
-// #ifdef __linux__
-//     #include <GL/glut.h>         
-// #endif
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
 
 #include "cmain.h"
+#include "KeyboardM.h"
+
 
 
 int main(int argc, char** argv)
@@ -107,18 +102,16 @@ void defualt_body(int argc, char** argv)
 void press_arrow_key(int key, int x, int y)
 {
         if(key == GLUT_KEY_LEFT)
-                translate_negative_x();  
+                translate_negative_x_m(&x_desplacement);  
         else if(key == GLUT_KEY_RIGHT)
-                translate_positive_x();
+                translate_positive_x_m(&x_desplacement);
         else if(key == GLUT_KEY_DOWN){
                 printf("Down key is pressed\n");
-                translate_negative_y();
-                //decrease_y_scale();
+                translate_negative_y_m(&y_desplacement);
         }
         else if(key == GLUT_KEY_UP){
                 printf("Up key is pressed\n");
-                translate_positive_y();
-                //increase_y_scale();
+                translate_positive_y_m(&y_desplacement);
         }  
 }
 
@@ -139,11 +132,11 @@ void press_abc_key(unsigned char key, int x, int y)
         
         else if(key == 'i') {
                 printf("i key pressed\n");
-                zoom_in_ptr(&zoomFactor);
+                zoom_in_m(&zoomFactor);
         }
         else if(key == 'o') {
                 printf("i key pressed\n");
-                zoom_out_1();
+                zoom_out_m(&zoomFactor);
         }
         else if(key == 'k') {
                 rotate_x_axis_positive();
@@ -159,29 +152,8 @@ void press_abc_key(unsigned char key, int x, int y)
         }
 
 }
-// ---------------------------------------------------
-// [ ] global variable + glScale()
-void zoom_in_ptr(GLfloat *zoomFactor)
-{
-        *zoomFactor = (*zoomFactor)/0.98;
-        glutPostRedisplay();
-}
-
-
-void zoom_in_1(void)
-{
-        zoomFactor = zoomFactor/0.98;
-        glutPostRedisplay();
-}
-
-void zoom_out_1(void)
-{
-        zoomFactor = zoomFactor*0.98;
-        glutPostRedisplay();
-}
 // ------------------------------------------------
-// translate 
-// not working
+
 
 void translate_negative_x(void)
 {
