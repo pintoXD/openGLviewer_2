@@ -27,13 +27,4 @@ void rotate_y_axis_positive_m(GLfloat *);
 void rotate_y_axis_negative_m(GLfloat *);
 
 
-// -------------------------------------
-
-void display_vertex_array_m(void);
-// doesn't work 
-
-
-
-
-
 #endif // KEYBOARD_H
