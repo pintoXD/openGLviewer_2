@@ -13,6 +13,9 @@
 #include "cmain.h"
 #include "KeyboardM.h"
 
+GLsizei windowWidth  = 800;
+GLsizei windowHeight = 600;
+
 
 
 int main(int argc, char** argv)
@@ -86,8 +89,8 @@ void populate_array()
 void defualt_body(int argc, char** argv)
 {
         glutInit(&argc, argv);
-        glutInitDisplayMode(GLUT_SINGLE);
-        glutInitWindowSize(800, 600);
+        glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+        glutInitWindowSize(windowWidth, windowHeight);
         glutInitWindowPosition(100, 100);
         glutCreateWindow("Hello world!");
 
@@ -95,8 +98,31 @@ void defualt_body(int argc, char** argv)
 
         glutSpecialFunc( press_arrow_key );
         glutKeyboardFunc( press_abc_key );
+
+        glutMouseFunc( mouse_pt_plot );
+
         glutMainLoop();
         
+}
+
+
+void mouse_pt_plot(GLint button, GLint action, GLint xMouse, GLint yMouse)
+{
+        if (button == GLUT_LEFT_BUTTON && action == GLUT_DOWN)
+                plot_point(xMouse, windowWidth - yMouse);
+                printf("%d  -  %d\n",xMouse, windowWidth - yMouse);
+                // ter certeza que o meu ponto esta sendo plotado
+                // talvez a escala/posição em aue eu esteja plotando
+                // o meu ponto nao esteja correta
+
+        glFlush();
+}
+
+void plot_point(GLint x, GLint y)
+{
+        glBegin(GL_POINTS);
+                glVertex2i(x, y);
+        glEnd();
 }
 
 void press_arrow_key(int key, int x, int y)

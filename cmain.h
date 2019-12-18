@@ -19,6 +19,13 @@ static GLfloat vertices2[] = { 0,   0, 1,
                              2.0, 2.5, 1,
                              3.5, 3.5, 1};
 
+// #ifdef WINDOW_DIMENSIONS
+//     GLsizei windowWidth  = 800;
+//     GLsizei windowHeight = 600;
+// #endif
+/*
+    LITTLE nasty problem with this archetecture
+*/
 
 static GLdouble *vertex_ptr;
 static int vertex_count;
@@ -59,6 +66,14 @@ void rotate_x_axis_negative(void);
 
 void rotate_y_axis_positive(void);
 void rotate_y_axis_negative(void);
+
+//----------------------------
+
+void mouse_pt_plot(GLint button, GLint action, GLint xMouse, GLint yMouse);
+
+void plot_point(GLint x, GLint y);
+
+
 
 //----------------------------
 
