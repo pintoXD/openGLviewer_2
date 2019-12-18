@@ -57,7 +57,7 @@ void defualt_body(int argc, char** argv)
         glutInit(&argc, argv);
         glutInitDisplayMode(GLUT_SINGLE);
         glutInitWindowSize(800, 600);
-        glutInitWindowPosition(100, 100);
+        glutInitWindowPosition(500, 10);
         glutCreateWindow("Hello world!");
 
         glutDisplayFunc( display_vertex_array );

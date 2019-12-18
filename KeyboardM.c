@@ -71,4 +71,3 @@ void rotate_y_axis_negative_m(GLfloat *y_rotation_angle)
         glutPostRedisplay(); 
 }
 
-// -------------------------------------
