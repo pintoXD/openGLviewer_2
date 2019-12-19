@@ -1,4 +1,5 @@
 #ifndef CMAIN_H
+#define CMAIN_H
 
 #ifdef __APPLE__
     #define GL_SILENCE_DEPRECATION 
