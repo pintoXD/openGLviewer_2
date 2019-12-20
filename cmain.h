@@ -16,11 +16,10 @@
 #include <stdio.h>
 #include <errno.h>
 
-static GLdouble *vertex_ptr;
-static int vertex_count;
+// static GLdouble *vertex_ptr;
+// static int vertex_count;
 
 static GLfloat scaleY = -0.9;
-
 static GLfloat zoomFactor = 1.0;
 
 static GLfloat x_desplacement = 0.0;  
@@ -33,8 +32,6 @@ static GLfloat y_rotation_angle = 0.0;
 void defualt_body(int argc, char** argv);
 
 void displayMe2(void);
-
-void populate_array();
 
 void display_vertex_array(void);
 

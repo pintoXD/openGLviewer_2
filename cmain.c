@@ -4,16 +4,16 @@
  mac 
     gcc cmain.c -o cwindow  -framework OpenGL -framework GLUT 
     
-                           main
-                        /        \  
-                       /          \
-                openCloud          glFuncs
-                                 /     |    \   
-                                /      |     \
-                        keyboard      vars*     mouse
-                                                  |
-                                                  |
-                                                 vars*
+                          -----main-----
+                        /                \  
+                       /                  \
+                openCloud                    oGL
+                   |                    /     |    \   
+                   |                   /      |     \
+                 vars*           keyboard   vars*     mouse
+                                                           |
+                                                           |
+                                                          vars*
 
     
     */
@@ -24,6 +24,7 @@
 #include <errno.h>
 
 #include "cmain.h"
+#include "ogl.h"
 //#include "KeyboardM.h"
 
 
@@ -36,35 +37,6 @@ int main(int argc, char** argv)
         return 0;
 }
 
-void populate_array() 
-{      
-        FILE *cloudFile;
-        cloudFile = fopen ("./clouds/cloud_f.xyz","r");
-
-        if (cloudFile == NULL) {
-                printf ("File not created okay, errno = %d\n", errno);
-        }
-
-        int linesCount = 0;
-           for (char c = getc(cloudFile); c != EOF; c = getc(cloudFile)) {
-                if (c == '\n')
-                        linesCount = linesCount + 1;
-        }
-        vertex_count = linesCount;
-
-        rewind(cloudFile);
-
-        GLdouble *vertices_ptr;
-        vertices_ptr = malloc(sizeof(GLdouble)*linesCount*3+3);
-        
-        for (int i = 1, cursor = 0; cursor != EOF; i++) {       
-                cursor = fscanf(cloudFile, "%lf %lf %lf \n",  &((GLdouble *)vertices_ptr)[3*(i-1)    ], 
-                                                              &((GLdouble *)vertices_ptr)[3*(i-1) + 1], 
-                                                              &((GLdouble *)vertices_ptr)[3*(i-1) + 2]);
-        } 
-        vertex_ptr = vertices_ptr;
-}
-
 
 void defualt_body(int argc, char** argv)
 {
@@ -74,7 +46,7 @@ void defualt_body(int argc, char** argv)
         glutInitWindowPosition(500, 10);
         glutCreateWindow("Hello world!");
 
-        glutDisplayFunc( display_vertex_array );
+        glutDisplayFunc( display_vertex_array_ogl );
 
         glutSpecialFunc( press_arrow_key );
         glutKeyboardFunc( press_abc_key );
