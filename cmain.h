@@ -9,6 +9,10 @@
     #include <GL/glut.h>         
 #endif
 
+#include "cloud.h"
+#include "KeyboardM.h"
+
+
 #include <stdio.h>
 #include <errno.h>
 

@@ -7,7 +7,7 @@
 #endif
 
 #include "KeyboardM.h"
-#include "cmain.h" 
+//#include "cmain.h" 
 
 void translate_negative_x_m(GLfloat *x_desplacement)
 {

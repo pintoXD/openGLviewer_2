@@ -9,7 +9,9 @@
     #include <GL/glut.h>         
 #endif
 
-GLdouble *vertices_ptr;
 
 
-#endif KEYBOARDM_H
+GLdouble *vertex_ptr_cloud;
+int       vertex_count_cloud;
+
+#endif //KEYBOARDM_H

@@ -2,7 +2,21 @@
  freeglut linux
     gcc  cmain.c KeyboardM.c  -o linux_bi -lglut -lGL -lGLU 
  mac 
-    gcc cmain.c -o cwindow  -framework OpenGL -framework GLUT */
+    gcc cmain.c -o cwindow  -framework OpenGL -framework GLUT 
+    
+                           main
+                        /        \  
+                       /          \
+                openCloud          glFuncs
+                                 /     |    \   
+                                /      |     \
+                        keyboard      vars*     mouse
+                                                  |
+                                                  |
+                                                 vars*
+
+    
+    */
 
 
 #include <stdlib.h>
@@ -10,13 +24,13 @@
 #include <errno.h>
 
 #include "cmain.h"
-#include "KeyboardM.h"
+//#include "KeyboardM.h"
 
 
 
 int main(int argc, char** argv)
 {
-        populate_array();
+        populate_array_c();
         defualt_body(argc, argv);
 
         return 0;
@@ -131,15 +145,15 @@ void display_vertex_array(void)
        
         glEnableClientState(GL_VERTEX_ARRAY); 
                                          
-        glVertexPointer(3, GL_DOUBLE, 0, vertex_ptr);
+        glVertexPointer(3, GL_DOUBLE, 0, vertex_ptr_cloud);
 
 
-        unsigned int index[vertex_count];
-        for (int i = 0 ; i < vertex_count; i++) {
+        unsigned int index[vertex_count_cloud];
+        for (int i = 0 ; i < vertex_count_cloud; i++) {
                 index[i] = i;
         }
 
-        glDrawElements(GL_POINTS, vertex_count, GL_UNSIGNED_INT, index);
+        glDrawElements(GL_POINTS, vertex_count_cloud, GL_UNSIGNED_INT, index);
       
         glDisableClientState(GL_VERTEX_ARRAY);
         glFlush();
