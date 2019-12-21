@@ -1,0 +1,31 @@
+{
+//https://code.visualstudio.com/docs/cpp/config-clang-mac used by jp
+
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "clang build active file",
+            //"command": "/usr/bin/clang",
+            "command": "gcc",
+            "args": [
+                //mac option
+                "cmain.c",
+                "KeyboardM.c",
+                "-o",
+                "mac_bi",
+                "-framework",
+                "OpenGL",
+                "-framework", 
+                "GLUT"
+
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

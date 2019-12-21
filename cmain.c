@@ -2,7 +2,8 @@
  freeglut linux
     gcc  cmain.c KeyboardM.c  -o linux_bi -lglut -lGL -lGLU 
  mac 
-    gcc cmain.c -o cwindow  -framework OpenGL -framework GLUT 
+    gcc cmain.c -o cwindow  -framework OpenGL -framework GLUT
+    gcc cmain.c cloud.c ogl.c KeyboardM.c  -o mac_bi  -framework OpenGL -framework GLUT  
     
                           -----main-----
                         /                \  
@@ -46,7 +47,7 @@ void defualt_body(int argc, char** argv)
         glutInitWindowPosition(500, 10);
         glutCreateWindow("Hello world!");
 
-        glutDisplayFunc( display_vertex_array_ogl );
+        glutDisplayFunc( display_vertex_array ); //
 
         glutSpecialFunc( press_arrow_key );
         glutKeyboardFunc( press_abc_key );
