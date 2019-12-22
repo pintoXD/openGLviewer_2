@@ -19,8 +19,8 @@ int       vertex_count_cloud;
 //static GLfloat OGL_scaleY = -0.9;
 
 // IF NOT STATIC LINKER ERROR
-static GLfloat OGL_scaleY = -0.9;
-static GLfloat OGL_zoomFactor = 1.0;
+static GLfloat OGL_scaleY     = -0.9;
+static GLfloat OGL_zoomFactor =  1.0;
 
 static GLfloat OGL_x_desplacement = 0.0;  
 static GLfloat OGL_y_desplacement = 0.0;
