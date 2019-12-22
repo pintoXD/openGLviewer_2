@@ -1,13 +1,25 @@
-#ifdef __APPLE__
-    #define GL_SILENCE_DEPRECATION 
-    #include <GLUT/glut.h>         
-#endif
-#ifdef __linux__
-    #include <GL/glut.h>         
-#endif
-
 #include "KeyboardM.h"
+#include <stdio.h>
 //#include "cmain.h" 
+
+
+void press_arrow_key_m(int key, int x, int y)
+{
+        if(key == GLUT_KEY_LEFT)
+                translate_negative_x_m(&OGL_x_desplacement);  
+        else if(key == GLUT_KEY_RIGHT)
+                translate_positive_x_m(&OGL_x_desplacement);
+        else if(key == GLUT_KEY_DOWN){
+                printf("Down key is pressed - %f\n", OGL_y_desplacement);
+                translate_positive_y_m(&OGL_y_desplacement);
+        }
+        else if(key == GLUT_KEY_UP){
+                printf("Up key is pressed - %f\n", OGL_y_desplacement);
+                translate_negative_y_m(&OGL_y_desplacement);
+        }  
+}
+
+//------------------------------
 
 void translate_negative_x_m(GLfloat *x_desplacement)
 {

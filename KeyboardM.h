@@ -9,6 +9,9 @@
     #include <GL/glut.h>         
 #endif
 
+#include "vars.h"
+
+
 void press_arrow_key_m(int , int , int );
 
 void zoom_in_m(GLfloat *);

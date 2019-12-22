@@ -12,10 +12,15 @@
                    |                    /     |    \   
                    |                   /      |     \
                  vars*           keyboard   vars*     mouse
-                                                           |
-                                                           |
-                                                          vars*
+                                    |                   |
+                                    |                   |
+                                   vars*               vars*
 
+
+[1][x] ifndef & define in vars.h caousing problem
+[ ] problem with vertex array_ogl key board functions doens't work
+[ ] isolate keyboard functions
+[ ] remove all from cmain and isolate the main function
     
     */
 
@@ -26,7 +31,7 @@
 
 #include "cmain.h"
 #include "ogl.h"
-//#include "KeyboardM.h"
+#include "KeyboardM.h"
 
 
 
@@ -58,16 +63,16 @@ void defualt_body(int argc, char** argv)
 void press_arrow_key(int key, int x, int y)
 {
         if(key == GLUT_KEY_LEFT)
-                translate_negative_x_m(&x_desplacement);  
+                translate_negative_x_m(&OGL_x_desplacement);  
         else if(key == GLUT_KEY_RIGHT)
-                translate_positive_x_m(&x_desplacement);
+                translate_positive_x_m(&OGL_x_desplacement);
         else if(key == GLUT_KEY_DOWN){
                 printf("Down key is pressed\n");
-                translate_positive_y_m(&y_desplacement);
+                translate_positive_y_m(&OGL_y_desplacement);
         }
         else if(key == GLUT_KEY_UP){
                 printf("Up key is pressed\n");
-                translate_negative_y_m(&y_desplacement);
+                translate_negative_y_m(&OGL_y_desplacement);
         }  
 }
 
@@ -76,23 +81,23 @@ void press_abc_key(unsigned char key, int x, int y)
 {
         if(key == 'i') {
                 printf("i key pressed\n");
-                zoom_in_m(&zoomFactor);
+                zoom_in_m(&OGL_zoomFactor);
         }
         else if(key == 'o') {
                 printf("i key pressed\n");
-                zoom_out_m(&zoomFactor);
+                zoom_out_m(&OGL_zoomFactor);
         }
         else if(key == 'k') {
-                rotate_x_axis_positive_m(&x_rotation_angle);
+                rotate_x_axis_positive_m(&OGL_x_rotation_angle);
         }
         else if(key == 'l') {
-                rotate_x_axis_negative_m(&x_rotation_angle);
+                rotate_x_axis_negative_m(&OGL_x_rotation_angle);
         }
         else if(key == 'n') {
-                rotate_y_axis_positive_m(&y_rotation_angle);
+                rotate_y_axis_positive_m(&OGL_y_rotation_angle);
         }
         else if(key == 'm') {
-                rotate_y_axis_negative_m(&y_rotation_angle);
+                rotate_y_axis_negative_m(&OGL_y_rotation_angle);
         }
 
 }
@@ -110,11 +115,11 @@ void display_vertex_array(void)
                   0, 1, 0);
 
 
-        glScalef(1*zoomFactor, scaleY*zoomFactor, 1*zoomFactor);
-        glTranslatef(x_desplacement, y_desplacement, z_desplacement);
+        glScalef(1*OGL_zoomFactor, OGL_scaleY*OGL_zoomFactor, 1*OGL_zoomFactor);
+        glTranslatef(OGL_x_desplacement, OGL_y_desplacement, OGL_z_desplacement);
         
-        glRotatef(x_rotation_angle, 1, 0, 0);
-        glRotatef(y_rotation_angle, 0, 1, 0);  
+        glRotatef(OGL_x_rotation_angle, 1, 0, 0);
+        glRotatef(OGL_y_rotation_angle, 0, 1, 0);  
        
         glEnableClientState(GL_VERTEX_ARRAY); 
                                          

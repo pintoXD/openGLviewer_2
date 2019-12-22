@@ -19,15 +19,15 @@
 // static GLdouble *vertex_ptr;
 // static int vertex_count;
 
-static GLfloat scaleY = -0.9;
-static GLfloat zoomFactor = 1.0;
+// static GLfloat scaleY = -0.9;
+// static GLfloat zoomFactor = 1.0;
 
-static GLfloat x_desplacement = 0.0;  
-static GLfloat y_desplacement = 0.0;
-static GLfloat z_desplacement = 0.0;
+// static GLfloat x_desplacement = 0.0;  
+// static GLfloat y_desplacement = 0.0;
+// static GLfloat z_desplacement = 0.0;
 
-static GLfloat x_rotation_angle = 0.0;
-static GLfloat y_rotation_angle = 0.0;
+// static GLfloat x_rotation_angle = 0.0;
+// static GLfloat y_rotation_angle = 0.0;
 
 void defualt_body(int argc, char** argv);
 
