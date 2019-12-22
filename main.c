@@ -2,8 +2,7 @@
  freeglut linux
     gcc  cmain.c KeyboardM.c  -o linux_bi -lglut -lGL -lGLU 
  mac 
-    gcc cmain.c -o cwindow  -framework OpenGL -framework GLUT
-    gcc cmain.c cloud.c ogl.c KeyboardM.c  -o mac_bi  -framework OpenGL -framework GLUT  
+    gcc main.c cloud.c ogl.c KeyboardM.c  -o mac_bi  -framework OpenGL -framework GLUT  
     
                           -----main-----
                         /               \  
