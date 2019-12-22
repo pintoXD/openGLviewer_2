@@ -1,7 +1,6 @@
 #include "ogl.h"
 
 
-
 void display_vertex_array_ogl(void) 
 {       
         glClearColor(0, 0, 0, 1);

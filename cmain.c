@@ -21,6 +21,10 @@
 [ ] problem with vertex array_ogl key board functions doens't work
 [ ] isolate keyboard functions
 [ ] remove all from cmain and isolate the main function
+
+[ ]    PROBLEMS with the OGL callbacks 
+[ ][ ] display vertex array finction
+[ ][ ] keyborad callback function 
     
     */
 
@@ -52,7 +56,7 @@ void defualt_body(int argc, char** argv)
         glutInitWindowPosition(500, 10);
         glutCreateWindow("Hello world!");
 
-        glutDisplayFunc( display_vertex_array ); //
+        glutDisplayFunc( display_vertex_array ); // colocar a funcao que funciona em outro arquivo
 
         glutSpecialFunc( press_arrow_key );
         glutKeyboardFunc( press_abc_key );

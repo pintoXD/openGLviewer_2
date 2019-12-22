@@ -14,5 +14,7 @@
 
 void display_vertex_array_ogl(void);
 
+void display_vertex_array(void);
+
 
 #endif //OGL_H

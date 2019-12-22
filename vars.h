@@ -16,6 +16,9 @@ GLdouble *vertex_ptr_cloud; //give segmentation fault if STATIC
 int       vertex_count_cloud;
 
 // were all static I changed and it crashed 
+//static GLfloat OGL_scaleY = -0.9;
+
+// IF NOT STATIC LINKER ERROR
 static GLfloat OGL_scaleY = -0.9;
 static GLfloat OGL_zoomFactor = 1.0;
 
