@@ -52,6 +52,8 @@ void display_vertex_array_ogl(void)
 } 
 
 
+
+
 void press_arrow_key_ogl(int key, int x, int y)
 {
         if(key == GLUT_KEY_LEFT)
