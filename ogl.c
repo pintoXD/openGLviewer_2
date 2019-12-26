@@ -12,10 +12,46 @@ void defualt_body_ogl(int argc, char** argv)
 
         glutSpecialFunc( press_arrow_key_ogl );
         glutKeyboardFunc( press_abc_key_ogl );
+
+        glutMouseFunc( mouse_pt_plot );
+
         glutMainLoop();
         
 }
 
+//
+//
+void mouse_pt_plot( GLint button, GLint action, GLint xMouse, GLint yMouse)
+{
+        if (button == GLUT_LEFT_BUTTON && action == GLUT_DOWN) {
+                plot_point(xMouse/100, yMouse/100);
+                /*
+                        meu valores aparecem na tela mas não são persitentes
+                        explicação: eu estou redesenhando a tela e nao tenho dentro da minha 
+                        estrutura de callback nenhuma referencia para esses valores gerados 
+                        pelo meu plot_point()
+                */
+                printf("%d - %d\n", xMouse, yMouse);
+                
+
+        }
+        glFlush();
+}
+
+void plot_point(GLint x, GLint y)
+{
+        glColor3f(1, 0, 0);
+
+        glBegin(GL_POLYGON);
+                glVertex3f(-1.0f, 1.0f, 0.0f);	// Top Left
+                glVertex3f( 1.0f, 1.0f, 0.0f);  
+                glVertex3f(x, y, 0);
+        glEnd();
+ // vai ser dificil fazer essa funçao funcionar 
+ // porem quando ela funcioanr vou ter um dominio melhor da tela
+}
+//
+//
 
 void display_vertex_array_ogl(void) 
 {       

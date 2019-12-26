@@ -27,5 +27,10 @@ void display_vertex_array_ogl(void);
 
 void display_vertex_array(void);
 
+//
+void mouse_pt_plot( GLint button, GLint Action, GLint xMouse, GLint yMouse);
+void plot_point(GLint x, GLint y);
+//
+
 
 #endif //OGL_H

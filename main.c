@@ -30,7 +30,9 @@
    [3][x] keyborad callback function 
 
 
-   [ ] mouse 
+   [ ]    MOUSE 
+   [ ][ ] glutLookAt -> with variables in vars.h to make proportional calcs
+   [ ][ ] 
 
    [ ]    multiple clouds with its different collors
    [ ][ ] this will encadiate new problems of archetecture
