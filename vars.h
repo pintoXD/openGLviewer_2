@@ -29,4 +29,21 @@ static GLfloat OGL_z_desplacement = 0.0;
 static GLfloat OGL_x_rotation_angle = 0.0;
 static GLfloat OGL_y_rotation_angle = 0.0;
 
+// ----------------------------
+static GLfloat eyeX = 0.0; 
+static GLfloat eyeY = 0.0; 
+static GLfloat eyeZ = 0.0; 
+
+static GLfloat centerX = 0.0; 
+static GLfloat centerY = 0.0; 
+static GLfloat centerZ =  -5;
+
+static GLfloat upX = 0; 
+static GLfloat upY = 1; 
+static GLfloat upZ = 0; 
+
+
+static char state = 2;
+
+
 #endif //VARS_H

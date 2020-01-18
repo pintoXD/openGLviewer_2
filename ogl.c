@@ -60,9 +60,9 @@ void display_vertex_array_ogl(void)
         glColor3f(1, 1, 1);
 
         glLoadIdentity();
-        gluLookAt(0, 0, 0,
-                  0, 0, -5,
-                  0, 1, 0);
+        gluLookAt(eyeX, eyeY, eyeZ,
+                  centerX, centerY, centerZ,
+                  upX, upY, upZ);
 
 
         glScalef(1*OGL_zoomFactor, OGL_scaleY*OGL_zoomFactor, 1*OGL_zoomFactor);
@@ -103,11 +103,13 @@ void press_arrow_key_ogl(int key, int x, int y)
         else if(key == GLUT_KEY_UP){
                 printf("Up key is pressed\n");
                 translate_negative_y_m(&OGL_y_desplacement);
-        }  
+        }
+        
 }
 
 void press_abc_key_ogl(unsigned char key, int x, int y)
 {
+        printf("%d\n", key);
         if(key == 'i') {
                 printf("i key pressed\n");
                 zoom_in_m(&OGL_zoomFactor);
@@ -128,6 +130,89 @@ void press_abc_key_ogl(unsigned char key, int x, int y)
         else if(key == 'm') {
                 rotate_y_axis_negative_m(&OGL_y_rotation_angle);
         }
+
+
+        else if(key == 32) {
+                state = state * -1;
+        }
+        else if(key == 'e' && state > 0 ) {
+                eyeX = eyeX + 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 'e' && state < 0 ) {
+                eyeX = eyeX - 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 'r' && state > 0 ) {
+                eyeY = eyeY + 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 'r' && state < 0 ) {
+                eyeY = eyeY - 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 't' && state > 0 ) {
+                eyeZ = eyeZ + 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 't' && state < 0 ) {
+                eyeZ = eyeZ - 0.03;
+                glutPostRedisplay();
+        }
+
+        else if(key == 's' && state > 0 ) {
+                centerX = centerX + 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 's' && state < 0 ) {
+                centerX = centerX - 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 'd' && state > 0 ) {
+                centerY = centerY + 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 'd' && state < 0 ) {
+                centerY = centerY - 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 'f' && state > 0 ) {
+                centerZ = centerZ + 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 'f' && state < 0 ) {
+                centerZ = centerZ - 0.03;
+                glutPostRedisplay();
+        }
+
+        else if(key == 'x' && state > 0 ) {
+                upX = upX + 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 'x' && state < 0 ) {
+                upX = upX - 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 'c' && state > 0 ) {
+                upY = upY + 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 'c' && state < 0 ) {
+                upY = upY - 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 'v' && state > 0 ) {
+                upZ = upZ + 0.03;
+                glutPostRedisplay();
+        }
+        else if(key == 'v' && state < 0 ) {
+                upZ = upZ - 0.03;
+                glutPostRedisplay();
+        }
+
+
+       
+
 
 }
 
