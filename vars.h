@@ -28,6 +28,7 @@ static GLfloat OGL_z_desplacement = 0.0;
 
 static GLfloat OGL_x_rotation_angle = 0.0;
 static GLfloat OGL_y_rotation_angle = 0.0;
+static int mx = -1, my = -1;   // Prevous mouse coordinates
 
 // ----------------------------
 static GLfloat eyeX = 0.0; 

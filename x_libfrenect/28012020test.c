@@ -186,11 +186,11 @@ int main(int argc, char **argv)
     window = glutCreateWindow("LibFreenect");
 
     glutDisplayFunc(&DrawGLScene);
-    glutIdleFunc(&DrawGLScene);
-    glutReshapeFunc(&ReSizeGLScene);
-    glutKeyboardFunc(&keyPressed);
-    glutMotionFunc(&mouseMoved);
-    glutMouseFunc(&mousePress);
+    glutIdleFunc(&DrawGLScene);          // [ ] 
+    glutReshapeFunc(&ReSizeGLScene);     // [ ] 
+    glutKeyboardFunc(&keyPressed);       // [ ] 
+    glutMotionFunc(&mouseMoved);         // [ ] 
+    glutMouseFunc(&mousePress);          // [ ] 
 
     InitGL(640, 480);
 

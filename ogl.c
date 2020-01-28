@@ -1,5 +1,10 @@
 #include "ogl.h"
 
+// find a file for these
+void mouseMoved(int x, int y);
+void mousePress(int button, int state, int x, int y);
+
+
 void defualt_body_ogl(int argc, char** argv)
 {
         glutInit(&argc, argv);
@@ -11,14 +16,40 @@ void defualt_body_ogl(int argc, char** argv)
         glutDisplayFunc( display_vertex_array_ogl ); // colocar a funcao que funciona em outro arquivo
 
         glutSpecialFunc( press_arrow_key_ogl );
+
         glutKeyboardFunc( press_abc_key_ogl );
 
-        glutMouseFunc( mouse_pt_plot );
+       // glutMouseFunc( mouse_pt_plot );
+        glutMotionFunc( mouseMoved );
+        glutMouseFunc( mousePress );
 
         glutMainLoop();
         
 }
 
+
+void mouseMoved(int x, int y)
+{
+    if (mx>=0 && my>=0) {
+        OGL_x_rotation_angle += y-my;
+        OGL_y_rotation_angle += x-mx;
+    }
+    mx = x;
+    my = y;
+}
+
+void mousePress(int button, int state, int x, int y)
+{
+        printf("%d - %d\n", x, y);
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+                mx = x;
+                my = y;
+        }
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
+                mx = -1;
+                my = -1;
+        }
+}
 //
 //
 void mouse_pt_plot( GLint button, GLint action, GLint xMouse, GLint yMouse)
