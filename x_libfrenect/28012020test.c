@@ -1,3 +1,9 @@
+/*
+
+     gcc 28012020test.c -o main  -lfreenect -lfreenect_sync -lGL -lGLU -lglut
+*/
+
+
 #include "libfreenect.h"
 #include "libfreenect_sync.h"
 #include <stdio.h>
@@ -134,7 +140,7 @@ void DrawGLScene()
     glTexImage2D(GL_TEXTURE_2D, 0, 3, 640, 480, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb);
 
     glPointSize(2.0f);
-    glDrawElements(GL_POINTS, 640*480, GL_UNSIGNED_INT, indices);
+    glDrawElements(GL_POINTS, 640*480, GL_UNSIGNED_INT, indices); //
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
     glutSwapBuffers();
@@ -186,9 +192,11 @@ int main(int argc, char **argv)
     window = glutCreateWindow("LibFreenect");
 
     glutDisplayFunc(&DrawGLScene);
-    glutIdleFunc(&DrawGLScene);          // [ ] 
-    glutReshapeFunc(&ReSizeGLScene);     // [ ] 
+    
+    glutIdleFunc(&DrawGLScene);          // [?] 
+    glutReshapeFunc(&ReSizeGLScene);     // [?] 
     glutKeyboardFunc(&keyPressed);       // [ ] 
+    
     glutMotionFunc(&mouseMoved);         // [ ] 
     glutMouseFunc(&mousePress);          // [ ] 
 

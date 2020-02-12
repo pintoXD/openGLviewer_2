@@ -14,7 +14,7 @@ void defualt_body_ogl(int argc, char** argv)
         glutCreateWindow("Hello world!");
 
         glutDisplayFunc( display_vertex_array_ogl ); // colocar a funcao que funciona em outro arquivo
-
+        glutIdleFunc( display_vertex_array_ogl );
         glutSpecialFunc( press_arrow_key_ogl );
 
         glutKeyboardFunc( press_abc_key_ogl );
@@ -48,6 +48,13 @@ void mousePress(int button, int state, int x, int y)
         if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
                 mx = -1;
                 my = -1;
+        }
+        if ( button == 3) {
+                zoom_in_m(&OGL_zoomFactor);
+        }
+
+        if ( button == 4) {
+                zoom_out_m(&OGL_zoomFactor);
         }
 }
 //
