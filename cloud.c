@@ -3,7 +3,8 @@
 void populate_array_c() 
 {      
         FILE *cloudFile;
-        cloudFile = fopen ("./clouds/cloud_f.xyz","r");
+        //cloudFile = fopen ("./clouds/cloud_f.xyz","r");
+        cloudFile = fopen ("./clouds/cloud_captured_1.xyz","r");
 
         if (cloudFile == NULL) {
                 printf ("File not created okay, errno = %d\n", errno);

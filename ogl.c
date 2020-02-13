@@ -5,6 +5,26 @@ void mouseMoved(int x, int y);
 void mousePress(int button, int state, int x, int y);
 
 
+
+/// test for snapshot
+void LoadVertexMatrix()
+{
+    float fx = 594.21f;
+    float fy = 591.04f;
+    float a = -0.0030711f;
+    float b = 3.3309495f;
+    float cx = 339.5f;
+    float cy = 242.7f;
+    GLfloat mat[16] = {
+        1/fx,     0,  0, 0,
+        0,    -1/fy,  0, 0,
+        0,       0,  0, a,
+        -cx/fx, cy/fy, -1, b
+    };
+    glMultMatrixf(mat);
+}
+
+
 void defualt_body_ogl(int argc, char** argv)
 {
         glutInit(&argc, argv);
@@ -108,6 +128,8 @@ void display_vertex_array_ogl(void)
         
         glRotatef(OGL_y_rotation_angle, 0, 1, 0);  
         glRotatef(OGL_x_rotation_angle, 1, 0, 0);
+
+        LoadVertexMatrix();  //test for depth capture
        
         glEnableClientState(GL_VERTEX_ARRAY); 
                                          

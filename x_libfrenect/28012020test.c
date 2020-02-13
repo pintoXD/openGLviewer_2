@@ -16,6 +16,11 @@
 #include <GL/glut.h>
 #endif
 
+//cloudFile = fopen ("./clouds/cloud_f.xyz","r");
+
+FILE *cloudFile;
+short depth_capture[480][640][3];
+
 int window;
 GLuint gl_rgb_tex;
 int mx=-1,my=-1;        // Prevous mouse coordinates
@@ -103,9 +108,15 @@ void DrawGLScene()
             xyz[i][j][0] = j;
             xyz[i][j][1] = i;
             xyz[i][j][2] = depth[i*640+j];
+            //
+            depth_capture[i][j][0] = j;
+            depth_capture[i][j][1] = i;
+            depth_capture[i][j][2] = depth[i*640+j];
+            //
             indices[i][j] = i*640+j;
         }
     }
+
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
@@ -159,6 +170,23 @@ void keyPressed(unsigned char key, int x, int y)
         zoom /= 1.1f;
     if (key == 'c')
         color = !color;
+
+
+    if (key == 'p') {
+        cloudFile = fopen ("../clouds/cloud_captured_1.xyz","w");
+
+         for (int i = 0; i < 480; i++) {
+            for (int j = 0; j < 640; j++) {
+                //
+                fprintf (cloudFile, "%d %d %d \n",depth_capture[i][j][0], depth_capture[i][j][1], depth_capture[i][j][2]);
+                //printf("%f \n",depth_capture[i][j][2]);
+                //
+        }
+        }
+        fclose(cloudFile);
+    }
+        
+ 
 }
 
 void ReSizeGLScene(int Width, int Height)
