@@ -148,7 +148,7 @@ void DrawGLScene()
     if (color)
         glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, gl_rgb_tex);
-    glTexImage2D(GL_TEXTURE_2D, 0, 3, 640, 480, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb);
+    glTexImage2D(GL_TEXTURE_2D, 0, 3, 640, 480, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb); // [ ] resposta para captura de foto deve estar por aqui
 
     glPointSize(2.0f);
     glDrawElements(GL_POINTS, 640*480, GL_UNSIGNED_INT, indices); //
