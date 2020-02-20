@@ -114,30 +114,31 @@ void display_vertex_array_ogl(void)
        
         glEnableClientState(GL_VERTEX_ARRAY); 
                                          
-        glVertexPointer(3, GL_DOUBLE, 0, vertex_ptr_cloud);
+                glVertexPointer(3, GL_DOUBLE, 0, vertex_ptr_cloud);
 
-// estou colocando um novo array para dividir os indices com o array antigo
-        unsigned int index[vertex_count_cloud/2];
-        int i;
-        for (  i = 0 ; i < vertex_count_cloud/2; i++) {
-                index[i] = i;
-                
-        }
+                // estou colocando um novo array para dividir os indices com o array antigo
+                unsigned int index[vertex_count_cloud/2];
+                int i;
+                for (  i = 0 ; i < vertex_count_cloud/2; i++) {
+                        index[i] = i;
+                        
+                }
 
-        unsigned int index2[vertex_count_cloud/2];
-        for ( int a = 0 ; i < vertex_count_cloud; i++) {
-                index2[a] = i;
-                a++;
-        }
-// -----------------------------------
+                unsigned int index2[vertex_count_cloud/2];
+                for ( int a = 0 ; i < vertex_count_cloud; i++) {
+                        index2[a] = i;
+                        a++;
+                }
+                // -----------------------------------
 
 
-        glDrawElements(GL_POINTS, 153600, GL_UNSIGNED_INT, index); //
-        glColor3f(0, 1, 0);
+                glDrawElements(GL_POINTS, 153600, GL_UNSIGNED_INT, index); 
+                glColor3f(0, 1, 0);
 
-        glDrawElements(GL_POINTS, 153600, GL_UNSIGNED_INT, index2); //
-        //glDrawElements(GL_POINTS, vertex_count_cloud, GL_UNSIGNED_INT, index);
-
+                glDrawElements(GL_POINTS, 153600, GL_UNSIGNED_INT, index2); 
+                //glDrawElements(GL_POINTS, vertex_count_cloud, GL_UNSIGNED_INT, index);
+        
+        glDisableClientState(GL_VERTEX_ARRAY);
 
 //  ------------------------------
         GLdouble vpp[] = {  -0.5, 0.5, 0, 
@@ -149,51 +150,16 @@ void display_vertex_array_ogl(void)
                 index3[i] = i;
         }
 
-
-        glVertexPointer(3, GL_DOUBLE, 0, vpp);
-
-        glColor3f(0, 0, 1);
-        glDrawElements(GL_POLYGON, 3, GL_UNSIGNED_INT, index3); //
-
-        
-        glDisableClientState(GL_VERTEX_ARRAY);
-
-//
-//        glEnableClientState(GL_VERTEX_ARRAY); 
-
-        // nao sei se antes ou depois de glVertexPointer
-        // vetor que contém os pontos
-
-        // vetor dinamico         
-        //vertex_ptr_persistent = malloc(sizeof(GLdouble)*1*3+3);
-
-//         
-/*/                                         
-        glEnableClientState(GL_VERTEX_ARRAY);
-        glVertexPointer(3, GL_DOUBLE, 0, vpp);
+        glEnableClientState(GL_VERTEX_ARRAY); // open vertex array
 
 
-        unsigned int points_count[3];
-        for (int i = 0 ; i < 3; i++) {
-                index[i] = i;
-        }
+                glVertexPointer(3, GL_DOUBLE, 0, vpp);
 
-        glDrawElements(GL_POINTS, 3, GL_UNSIGNED_INT, points_count);
-        glDisableClientState(GL_VERTEX_ARRAY);
+                glColor3f(0, 0, 1);
+                glDrawElements(GL_POLYGON, 3, GL_UNSIGNED_INT, index3); 
 
         
-
-
-/*/ 
-        // glColor3f(1, 0, 0);
-        // glBegin(GL_POLYGON);
-        //         glVertex3f( vpp[0], vpp[1], vpp[2]);	// Top Left
-        //         glVertex3f( vpp[3], vpp[4], vpp[5]);  
-        //         glVertex3f( vpp[6], vpp[7], vpp[8]);
-        // glEnd();
-//*/
-
-
+        glDisableClientState(GL_VERTEX_ARRAY); // close vertex array
 
         glFlush();
 } 
