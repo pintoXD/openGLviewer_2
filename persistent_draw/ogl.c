@@ -141,25 +141,34 @@ void display_vertex_array_ogl(void)
         glDisableClientState(GL_VERTEX_ARRAY);
 
 //  ------------------------------
-        GLdouble vpp[] = {  -0.5, 0.5, 0, 
-                             0.5, 0.5, 0,
-                             0.5,    1, 0 };
+        vpp[0] =   -0.5;
+        vpp[1] =   0.5;
+        vpp[2] =     0;
+        vpp[3] =   0.5;
+        vpp[4] =   0.5;
+        vpp[5] =   0;
+        vpp[6] =   0.5;
+        vpp[7] =   1;
+        vpp[8] =   0;
+        
 
         unsigned int index3[3];
         for (int i = 0 ; i < 3; i++) {
                 index3[i] = i;
         }
 
-        glEnableClientState(GL_VERTEX_ARRAY); // open vertex array
+        // if ( vpp[0] =! NULL ) {
+        if ( 1 ) {
+                glEnableClientState(GL_VERTEX_ARRAY); // open vertex array
 
+                        glVertexPointer(3, GL_DOUBLE, 0, vpp);
 
-                glVertexPointer(3, GL_DOUBLE, 0, vpp);
+                        glColor3f(0, 0, 1);
+                        glDrawElements(GL_POLYGON, 3, GL_UNSIGNED_INT, index3); 
 
-                glColor3f(0, 0, 1);
-                glDrawElements(GL_POLYGON, 3, GL_UNSIGNED_INT, index3); 
-
+                glDisableClientState(GL_VERTEX_ARRAY); // close vertex array
+        }
         
-        glDisableClientState(GL_VERTEX_ARRAY); // close vertex array
 
         glFlush();
 } 

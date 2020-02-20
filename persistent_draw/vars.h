@@ -10,10 +10,10 @@
     #include <GL/glut.h>         
 #endif
 
-    
-static GLdouble vpp[] = {  -0.5, 0.5, 0, 
-                     0.5, 0.5, 0,
-                     0.5,    1, 0 };
+ GLdouble vpp[9];   // pelo jeito nao presisa ser statico
+// static GLdouble vpp[] = {  -0.5, 0.5, 0, 
+//                      0.5, 0.5, 0,
+//                      0.5,    1, 0 };
 
 //GLdouble vertex_ptr_persistent[] = {};
 
