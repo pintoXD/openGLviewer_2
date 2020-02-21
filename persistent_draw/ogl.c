@@ -141,34 +141,20 @@ void display_vertex_array_ogl(void)
         glDisableClientState(GL_VERTEX_ARRAY);
 
 //  ------------------------------
-        vpp = malloc(sizeof(GLdouble)*9);
-        
-        vpp[0] =   -0.5;
-        vpp[1] =   0.5;
-        vpp[2] =     0;
-        vpp[3] =   0.5;
-        vpp[4] =   0.5;
-        vpp[5] =   0;
-        vpp[6] =   0.5;
-        vpp[7] =   1;
-        vpp[8] =   0;
-        
 
-        unsigned int index3[3];
-        for (int i = 0 ; i < 3; i++) {
-                index3[i] = i;
-        }
-
-        // if ( vpp[0] =! NULL ) {
         if ( vpp != NULL ) {
                 glEnableClientState(GL_VERTEX_ARRAY); // open vertex array
 
                         glVertexPointer(3, GL_DOUBLE, 0, vpp);
 
+                        
                         glColor3f(0, 0, 1);
-                        glDrawElements(GL_POLYGON, 3, GL_UNSIGNED_INT, index3); 
+                        // cuidado com o numero de elementos
+                        glDrawElements(GL_POLYGON, 3, GL_UNSIGNED_INT, index_vpp); 
 
                 glDisableClientState(GL_VERTEX_ARRAY); // close vertex array
+        } else {
+                printf("vetor nulo\n");
         }
         
 
@@ -197,6 +183,30 @@ void press_arrow_key_ogl(int key, int x, int y)
 
 void press_abc_key_ogl(unsigned char key, int x, int y)
 {
+        if(key == 'q') {
+                // after malloc or before ?
+                for (int i = 0 ; i < 3; i++) {
+                        index_vpp[i] = i;
+                }
+
+                vpp = malloc(sizeof(GLdouble)*9);
+        
+                vpp[0] =   -0.5;
+                vpp[1] =   0.5;
+                vpp[2] =     0;
+                vpp[3] =   0.5;
+                vpp[4] =   0.5;
+                vpp[5] =   0;
+                vpp[6] =   0.5;
+                vpp[7] =   1;
+                vpp[8] =   0;
+
+
+                printf("q key pressed\n");
+                
+        }
+
+
         printf("%d\n", key);
         if(key == 'i') {
                 printf("i key pressed\n");

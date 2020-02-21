@@ -10,17 +10,15 @@
     #include <GL/glut.h>         
 #endif
 
-//1
-//GLdouble vpp[9];   // pelo jeito nao presisa ser statico
 
 
 //2
-static GLdouble *vpp = NULL;
-// static GLdouble vpp[] = {  -0.5, 0.5, 0, 
-//                      0.5, 0.5, 0,
-//                      0.5,    1, 0 };
+static GLdouble *vpp = NULL; // vertex persistente pointeer
+//static GLdouble *index_vpp = NULL;
+unsigned int index_vpp[3];
 
-//GLdouble vertex_ptr_persistent[] = {};
+//3
+
 
 GLdouble *vertex_ptr_cloud; //give segmentation fault if STATIC
 int       vertex_count_cloud;
