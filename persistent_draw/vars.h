@@ -10,7 +10,12 @@
     #include <GL/glut.h>         
 #endif
 
- GLdouble vpp[9];   // pelo jeito nao presisa ser statico
+//1
+//GLdouble vpp[9];   // pelo jeito nao presisa ser statico
+
+
+//2
+static GLdouble *vpp = NULL;
 // static GLdouble vpp[] = {  -0.5, 0.5, 0, 
 //                      0.5, 0.5, 0,
 //                      0.5,    1, 0 };

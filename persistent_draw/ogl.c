@@ -141,6 +141,8 @@ void display_vertex_array_ogl(void)
         glDisableClientState(GL_VERTEX_ARRAY);
 
 //  ------------------------------
+        vpp = malloc(sizeof(GLdouble)*9);
+        
         vpp[0] =   -0.5;
         vpp[1] =   0.5;
         vpp[2] =     0;
@@ -158,7 +160,7 @@ void display_vertex_array_ogl(void)
         }
 
         // if ( vpp[0] =! NULL ) {
-        if ( 1 ) {
+        if ( vpp != NULL ) {
                 glEnableClientState(GL_VERTEX_ARRAY); // open vertex array
 
                         glVertexPointer(3, GL_DOUBLE, 0, vpp);
