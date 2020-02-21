@@ -145,12 +145,12 @@ void display_vertex_array_ogl(void)
         if ( vpp != NULL ) {
                 glEnableClientState(GL_VERTEX_ARRAY); // open vertex array
 
-                        glVertexPointer(3, GL_DOUBLE, 0, vpp);
+                        glColor3f(0, 0, 1);
 
                         
-                        glColor3f(0, 0, 1);
+                        glVertexPointer(3, GL_DOUBLE, 0, vpp);
                         // cuidado com o numero de elementos
-                        glDrawElements(GL_POLYGON, 3, GL_UNSIGNED_INT, index_vpp); 
+                        glDrawElements(GL_POLYGON, 307200, GL_UNSIGNED_INT, index_vpp); 
 
                 glDisableClientState(GL_VERTEX_ARRAY); // close vertex array
         } else {
@@ -184,8 +184,8 @@ void press_arrow_key_ogl(int key, int x, int y)
 void press_abc_key_ogl(unsigned char key, int x, int y)
 {
         if(key == 'q') {
-                // after malloc or before ?
-                for (int i = 0 ; i < 3; i++) {
+
+/*                for (int i = 0 ; i < 3; i++) {  // after malloc or before ?
                         index_vpp[i] = i;
                 }
 
@@ -200,6 +200,20 @@ void press_abc_key_ogl(unsigned char key, int x, int y)
                 vpp[6] =   0.5;
                 vpp[7] =   1;
                 vpp[8] =   0;
+*/
+                for (int i = 0 ; i < 307200; i++) {  
+                        index_vpp[i] = i;
+                }
+
+                vpp = malloc(sizeof(GLdouble)*307200*3+3);
+
+                for (int i = 0 ; i < 307200; i++) {  
+                        // tentar acessar dados do array e colocar no prompt
+                        
+                        vpp[3*(i-1)    ] = vertex_ptr_cloud[3*(i-1)    ] + 0.1; //nao funciona ainda
+                        vpp[3*(i-1) + 1] = vertex_ptr_cloud[3*(i-1) + 1];
+                        vpp[3*(i-1) + 2] = vertex_ptr_cloud[3*(i-1) + 2];
+                }
 
 
                 printf("q key pressed\n");

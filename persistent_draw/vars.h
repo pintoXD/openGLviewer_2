@@ -15,9 +15,10 @@
 //2
 static GLdouble *vpp = NULL; // vertex persistente pointeer
 //static GLdouble *index_vpp = NULL;
-unsigned int index_vpp[3];
+unsigned int index_vpp[307200];
 
-//3
+
+//3 nuvem adicionar 1 delta_X 
 
 
 GLdouble *vertex_ptr_cloud; //give segmentation fault if STATIC
